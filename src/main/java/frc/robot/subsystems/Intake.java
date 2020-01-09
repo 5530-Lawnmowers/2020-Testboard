@@ -9,7 +9,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+
 public class Intake extends SubsystemBase {
+  //Intake has 3 motors: 2 NEO motors on the intake (Spark) and 1 motor on the intake (TalonSRX)
+  
   /**
    * Creates a new Intake.
    */
