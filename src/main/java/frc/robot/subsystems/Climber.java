@@ -7,9 +7,16 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.revrobotics.*;
+import com.ctre.phoenix.motorcontrol.can.*;
+
 public class Climber extends SubsystemBase {
+  private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
+  private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);
+
   /**
    * Creates a new Climber.
    */

@@ -8,13 +8,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+import com.revrobotics.*;
+import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Spinner extends SubsystemBase {
   /**
    * Creates a new Spinner.
    */
   public Spinner() {
-
+    private final WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.SPIN);
   }
 
   @Override

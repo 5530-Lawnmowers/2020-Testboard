@@ -8,11 +8,21 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
+import com.revrobotics.*;
+import com.ctre.phoenix.motorcontrol.can.*;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Intake extends SubsystemBase {
-  //Intake has 3 motors: 2 NEO motors on the intake (Spark) and 1 motor on the intake (TalonSRX)
-  
+  //Intake has 3 motors: 2 NEO motors on the intake (Spark) and 1 motor on the  (TalonSRX)
+  private final CANSparkMax intake1 = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
+  private final WPI_TalonSRX delivery = new WPI_TalonSRX(Constants.DELIVERY);
+
+  //Intake has assorted digital triggers
+  private final DigitalInput delivery1 = new DigitalInput(Constants.DELIVERY_S1);
+  private final DigitalInput delivery2 = new DigitalInput(Constants.DELIVERY_S2);
+
   /**
    * Creates a new Intake.
    */
