@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.OutputRGB;
 
-import com.revrobotics.*;
+import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorSensorV3;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -28,5 +30,11 @@ public class Spinner extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    // In theory, this should schedule the command to output the RGB values.
+    CommandScheduler.getInstance().schedule(new OutputRGB(this));
+  }
+
+  public Color getColor() {
+    return colorSensor.getColor();
   }
 }
