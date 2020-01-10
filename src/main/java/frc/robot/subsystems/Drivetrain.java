@@ -8,10 +8,13 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.Constants;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.kauailabs.navx.frc.AHRS;
 
 public class Drivetrain extends SubsystemBase {
   private final WPI_TalonFX drivetrainLeft1 = new WPI_TalonFX(Constants.DT_L1);
@@ -21,15 +24,19 @@ public class Drivetrain extends SubsystemBase {
   private final WPI_TalonFX drivetrainRight2 = new WPI_TalonFX(Constants.DT_R2);
   private final WPI_TalonFX drivetrainRight3 = new WPI_TalonFX(Constants.DT_R3);
 
+  private final AHRS gyro = new AHRS(SerialPort.Port.kMXP);
+
   /**
    * Creates a new Drivetrain.
    */
   public Drivetrain() {
-
+    gyro.zeroYaw();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    ShuffleboardHelpers.setWidgetValue("Gyro", "Yaw", gyro.getYaw());
   }
+
 }
