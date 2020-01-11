@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorMatch;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -47,5 +49,12 @@ public final class Constants {
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+
+
+    //Color sensor constants
+    public static final Color blueTarget = ColorMatch.makeColor(0.150, 0.460, 0.351);
+    public static final Color greenTarget = ColorMatch.makeColor(0.189, 0.552, 0.246);
+    public static final Color redTarget = ColorMatch.makeColor(0.462, 0.381, 0.161);
+    public static final Color yellowTarget = ColorMatch.makeColor(0.323, 0.544, 0.128);
 
 }

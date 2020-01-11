@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Spinner;
+import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -26,8 +27,25 @@ public class OutputRGB extends InstantCommand {
   // Called when the command is initially scheduled. Sets widgets to detected value.
   @Override
   public void initialize() {
+    //Output RGB
     ShuffleboardHelpers.setWidgetValue("Color", "Red", spinner.getColor().red);
     ShuffleboardHelpers.setWidgetValue("Color", "Green", spinner.getColor().green);
     ShuffleboardHelpers.setWidgetValue("Color", "Blue", spinner.getColor().blue);
+
+    //Output color match
+    if (spinner.getColorMatch().color == Constants.blueTarget) {
+      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Blue");
+    } else if (spinner.getColorMatch().color == Constants.redTarget) {
+      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Red");
+    } else if (spinner.getColorMatch().color == Constants.greenTarget) {
+      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Green");
+    } else if (spinner.getColorMatch().color == Constants.yellowTarget) {
+      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Yellow");
+    } else {
+      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Unknown");
+    }
+
+    //Output confidence
+    ShuffleboardHelpers.setWidgetValue("Color", "Confidence", spinner.getColorMatch().confidence);
   }
 }

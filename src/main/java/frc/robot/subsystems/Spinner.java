@@ -13,18 +13,25 @@ import frc.robot.Constants;
 import frc.robot.commands.OutputRGB;
 
 import edu.wpi.first.wpilibj.util.Color;
+
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Spinner extends SubsystemBase {
   private final WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.SPIN);
   private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.I2C_PORT);
+  private final ColorMatch colorMatch = new ColorMatch();
 
   /**
    * Creates a new Spinner.
    */
   public Spinner() {
-    
+    colorMatch.addColorMatch(Constants.blueTarget);
+    colorMatch.addColorMatch(Constants.greenTarget);
+    colorMatch.addColorMatch(Constants.redTarget);
+    colorMatch.addColorMatch(Constants.yellowTarget);
   }
 
   @Override
@@ -34,7 +41,19 @@ public class Spinner extends SubsystemBase {
     CommandScheduler.getInstance().schedule(new OutputRGB(this));
   }
 
+  /**
+   * Get the color detected by the sensor
+   * @return detected Color
+   */
   public Color getColor() {
     return colorSensor.getColor();
+  }
+
+  /**
+   * Get the result of the color match
+   * @return matched ColorMathResult
+   */
+  public ColorMatchResult getColorMatch() {
+    return colorMatch.matchClosestColor(colorSensor.getColor());
   }
 }

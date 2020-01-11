@@ -36,8 +36,10 @@ public class Robot extends TimedRobot {
     //For color sensor test only, creates shuffleboard tab and fields
     Shuffleboard.getTab("Color");
     Shuffleboard.getTab("Color").add("Red", 0);
-    Shuffleboard.getTab("Color").add("Blue", 0);
     Shuffleboard.getTab("Color").add("Green", 0);
+    Shuffleboard.getTab("Color").add("Blue", 0);
+    Shuffleboard.getTab("Color").add("Match", "Unknown");
+    Shuffleboard.getTab("Color").add("Confidence", 0);
     Shuffleboard.getTab("Gyro");
     Shuffleboard.getTab("Gyro").add("Yaw",0);
   }
