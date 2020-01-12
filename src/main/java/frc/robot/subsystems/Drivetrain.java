@@ -19,10 +19,8 @@ import com.kauailabs.navx.frc.AHRS;
 public class Drivetrain extends SubsystemBase {
   private final WPI_TalonFX drivetrainLeft1 = new WPI_TalonFX(Constants.DT_L1);
   private final WPI_TalonFX drivetrainLeft2 = new WPI_TalonFX(Constants.DT_L2);
-  private final WPI_TalonFX drivetrainLeft3 = new WPI_TalonFX(Constants.DT_L3);
   private final WPI_TalonFX drivetrainRight1 = new WPI_TalonFX(Constants.DT_R1);
   private final WPI_TalonFX drivetrainRight2 = new WPI_TalonFX(Constants.DT_R2);
-  private final WPI_TalonFX drivetrainRight3 = new WPI_TalonFX(Constants.DT_R3);
 
   private final AHRS gyro = new AHRS(SerialPort.Port.kMXP);
 

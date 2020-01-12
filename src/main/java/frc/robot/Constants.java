@@ -27,10 +27,8 @@ public final class Constants {
     //Drivetrain motors
     public static final int DT_R1 = 2;
     public static final int DT_R2 = 3;
-    public static final int DT_R3 = 4;
     public static final int DT_L1 = 5;
     public static final int DT_L2 = 6;
-    public static final int DT_L3 = 7;
 
     //Intake motors
     public static final int INTAKE = 8;

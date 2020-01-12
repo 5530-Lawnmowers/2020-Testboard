@@ -34,4 +34,14 @@ public class Intake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void testboardTestingMove(double sparkInput, double talonInput) {
+    intake1.set(sparkInput);
+    delivery.set(talonInput);
+  }
+
+  public void testboardTestingStop() {
+    intake1.stopMotor();
+    delivery.stopMotor();
+  }
 }
