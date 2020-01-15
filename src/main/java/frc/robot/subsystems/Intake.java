@@ -37,7 +37,7 @@ public class Intake extends SubsystemBase {
 
   public void testboardTestingMove(double sparkInput, double talonInput) {
     intake1.set(sparkInput);
-    delivery.set(talonInput);
+    //delivery.set(talonInput);
   }
 
   public void testboardTestingStop() {

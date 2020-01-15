@@ -23,17 +23,17 @@ public final class Constants {
     //These are all in flux pending final robot design
 
     //Climber motors
-    public static final int CLIMB_L = 0;
-    public static final int CLIMB_R = 1;
+    public static final int CLIMB_L = 5;
+    public static final int CLIMB_R = 2;
 
     //Drivetrain motors
-    public static final int DT_R1 = 2;
-    public static final int DT_R2 = 3;
-    public static final int DT_L1 = 5;
-    public static final int DT_L2 = 6;
+    public static final int DT_R1 = 9;
+    public static final int DT_R2 = 10;
+    public static final int DT_L1 = 11;
+    public static final int DT_L2 = 12;
 
     //Intake motors
-    public static final int INTAKE = 7;
+    public static final int INTAKE = 8;
     public static final int DELIVERY = 4;
 
     //Intake sensors
@@ -41,11 +41,11 @@ public final class Constants {
     public static final int DELIVERY_S2 = 1;
 
     //Shooter motors
-    public static final int SHOOTER_1 = 10;
-    public static final int SHOOTER_2 = 11;
+    public static final int SHOOTER_1 = 6;
+    public static final int SHOOTER_2 = 3;
 
     //Spinner motors
-    public static final int SPIN = 12;
+    public static final int SPIN = 7;
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
