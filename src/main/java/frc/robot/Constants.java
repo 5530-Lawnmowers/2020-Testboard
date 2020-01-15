@@ -20,6 +20,8 @@ import com.revrobotics.ColorMatch;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //These are all in flux pending final robot design
+
     //Climber motors
     public static final int CLIMB_L = 0;
     public static final int CLIMB_R = 1;
@@ -31,8 +33,8 @@ public final class Constants {
     public static final int DT_L2 = 6;
 
     //Intake motors
-    public static final int INTAKE = 8;
-    public static final int DELIVERY = 9;
+    public static final int INTAKE = 7;
+    public static final int DELIVERY = 4;
 
     //Intake sensors
     public static final int DELIVERY_S1 = 0;
