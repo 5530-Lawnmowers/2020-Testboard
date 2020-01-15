@@ -59,7 +59,7 @@ public class RobotContainer {
     JoystickButton xbstart = new JoystickButton(XBController, 8);
     JoystickButton xbback = new JoystickButton(XBController, 7);
 
-    xba.toggleWhenPressed(new SimpleMotorTest(intake, (boolean) ShuffleboardHelpers.getWidgetValue("Test", "Test Spark")));
+    xba.toggleWhenPressed(new SimpleMotorTest(intake));
   }
 
 

@@ -18,10 +18,10 @@ public class SimpleMotorTest extends CommandBase {
   /**
    * Creates a new SimpleMotorTest.
    */
-  public SimpleMotorTest(Intake intake, boolean isSpark) {
+  public SimpleMotorTest(Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
-    spark = isSpark;
+    spark = ((int) ShuffleboardHelpers.getWidgetValue("Test", "Test Spark") == 1);
     addRequirements(intake);
   }
 
@@ -34,14 +34,14 @@ public class SimpleMotorTest extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ShuffleboardHelpers.setWidgetValue("Color", "Test Status", "Running");
+    ShuffleboardHelpers.setWidgetValue("Test", "Test Status", "Running");
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.testboardTestingStop();
-    ShuffleboardHelpers.setWidgetValue("Color", "Test Status", "Ended");
+    ShuffleboardHelpers.setWidgetValue("Test", "Test Status", "Ended");
   }
 
   // Returns true when the command should end.
