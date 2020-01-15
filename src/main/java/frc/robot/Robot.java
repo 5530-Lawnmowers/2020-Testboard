@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+    
 
     //For color sensor test only, creates shuffleboard tab and fields
     Shuffleboard.getTab("Color");
@@ -45,6 +45,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Test").add("Test Spark", 1);
     Shuffleboard.getTab("Gyro");
     Shuffleboard.getTab("Gyro").add("Yaw",0);
+
+    m_robotContainer = new RobotContainer();
   }
 
   /**

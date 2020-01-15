@@ -21,7 +21,7 @@ public class SimpleMotorTest extends CommandBase {
   public SimpleMotorTest(Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
-    spark = ((int) ShuffleboardHelpers.getWidgetValue("Test", "Test Spark") == 1);
+    spark = ((double) ShuffleboardHelpers.getWidgetValue("Test", "Test Spark") == 1);
     addRequirements(intake);
   }
 
