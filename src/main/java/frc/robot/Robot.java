@@ -40,7 +40,9 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Color").add("Blue", 0);
     Shuffleboard.getTab("Color").add("Match", "Unknown");
     Shuffleboard.getTab("Color").add("Confidence", 0);
-    Shuffleboard.getTab("Color").add("Test Run", "Start");
+    Shuffleboard.getTab("Test");
+    Shuffleboard.getTab("Test").add("Test Status", "Start");
+    Shuffleboard.getTab("Test").add("Test Spark", true);
     Shuffleboard.getTab("Gyro");
     Shuffleboard.getTab("Gyro").add("Yaw",0);
   }

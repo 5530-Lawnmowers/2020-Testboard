@@ -35,9 +35,12 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void testboardTestingMove(double sparkInput, double talonInput) {
-    intake1.set(sparkInput);
-    //delivery.set(talonInput);
+  public void testboardTestingMove(double input, boolean isSpark) {
+    if (isSpark) {
+      intake1.set(input);
+    } else {
+      delivery.set(input);
+    }
   }
 
   public void testboardTestingStop() {

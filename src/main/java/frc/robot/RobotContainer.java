@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -58,7 +59,7 @@ public class RobotContainer {
     JoystickButton xbstart = new JoystickButton(XBController, 8);
     JoystickButton xbback = new JoystickButton(XBController, 7);
 
-    xba.toggleWhenPressed(new SimpleMotorTest(intake));
+    xba.toggleWhenPressed(new SimpleMotorTest(intake, (boolean) ShuffleboardHelpers.getWidgetValue("Test", "Test Spark")));
   }
 
 
