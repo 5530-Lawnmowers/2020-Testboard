@@ -64,6 +64,7 @@ public class RobotContainer {
     xby.toggleWhenPressed(new ShooterMotorTest(shooter));
     xbx.toggleWhenPressed(new SpinnerMotorTest(spinner));
     xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
+    xbback.toggleWhenPressed(new ToggleSparkIntakeTest());
   }
 
 
