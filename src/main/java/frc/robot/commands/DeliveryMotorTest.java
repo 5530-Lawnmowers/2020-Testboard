@@ -8,28 +8,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
 import frc.robot.helpers.ShuffleboardHelpers;
+import frc.robot.subsystems.Delivery;
 
-public class IntakeMotorTest extends CommandBase {
-  private double speedSet = 0.4;
-  private Intake intake;
+public class DeliveryMotorTest extends CommandBase {
+  private double speedSet;
+  private Delivery delivery;
   
   /**
-   * Creates a new SimpleMotorTest.
+   * Creates a new DeliveryMotorTest.
    */
-  public IntakeMotorTest(Intake intake) {
+  public DeliveryMotorTest(Delivery delivery) {
+    this.delivery = delivery;
+    addRequirements(delivery);
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
-    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Set Speed");
-    intake.testIntakeSet(speedSet);
-    ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Running");
+    speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Delivery Set Speed");
+    delivery.testDeliverySet(speedSet);
+    ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Running");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,8 +40,8 @@ public class IntakeMotorTest extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.testIntakeStop();
-    ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Ended");
+    delivery.testDeliveryStop();
+    ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Ended");
   }
 
   // Returns true when the command should end.

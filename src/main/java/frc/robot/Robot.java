@@ -42,11 +42,12 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Color").add("Confidence", 0);
     Shuffleboard.getTab("Test");
     Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Intake Test Spark", 1);
     Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
     Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start");
     Shuffleboard.getTab("Test").add("Shooter Test Status", "Start");
     Shuffleboard.getTab("Test").add("Spinner Test Status", "Start");
+    Shuffleboard.getTab("Test").add("Delivery test Status", "Start");
+    Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);

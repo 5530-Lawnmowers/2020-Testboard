@@ -30,6 +30,7 @@ public class RobotContainer {
   private final Intake intake = new Intake();
   private final Shooter shooter = new Shooter();
   private final Spinner spinner = new Spinner();
+  private final Delivery delivery = new Delivery();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -63,7 +64,7 @@ public class RobotContainer {
     xby.toggleWhenPressed(new ShooterMotorTest(shooter));
     xbx.toggleWhenPressed(new SpinnerMotorTest(spinner));
     xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
-    xbback.toggleWhenPressed(new ToggleSparkIntakeTest());
+    xbback.toggleWhenPressed(new DeliveryMotorTest(delivery));
   }
 
 

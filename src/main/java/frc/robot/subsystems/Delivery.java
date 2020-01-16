@@ -14,14 +14,18 @@ import com.revrobotics.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 
-public class Intake extends SubsystemBase {
-  //Intake has 3 motors: 2 NEO motors on the intake (Spark) and 1 motor on the  (TalonSRX)
-  private final CANSparkMax intake1 = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
+public class Delivery extends SubsystemBase {
+  private final WPI_TalonSRX delivery1 = new WPI_TalonSRX(Constants.DELIVERY_1);
+  private final WPI_TalonSRX delivery2 = new WPI_TalonSRX(Constants.DELIVERY_2);
+
+  //Delivery has assorted digital triggers
+  private final DigitalInput deliverySensor1 = new DigitalInput(Constants.DELIVERY_S1);
+  private final DigitalInput deliverySensor2 = new DigitalInput(Constants.DELIVERY_S2);
 
   /**
-   * Creates a new Intake.
+   * Creates a new Delivery.
    */
-  public Intake() {
+  public Delivery() {
 
   }
 
@@ -30,11 +34,14 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void testIntakeSet(double input) {
-      intake1.set(input);
+
+  public void testDeliverySet(double input) {
+    delivery1.set(input);
+    delivery2.set(input);
   }
 
-  public void testIntakeStop() {
-    intake1.stopMotor();
+  public void testDeliveryStop() {
+    delivery1.stopMotor();
+    delivery2.stopMotor();
   }
 }
