@@ -33,6 +33,14 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  public static XboxController XBController = new XboxController(1);
+  public static JoystickButton xba = new JoystickButton(XBController, 1);
+  public static JoystickButton xbb = new JoystickButton(XBController, 2);
+  public static JoystickButton xbrb = new JoystickButton(XBController, 6);
+  public static JoystickButton xby  = new JoystickButton(XBController, 4);
+  public static JoystickButton xbx = new JoystickButton(XBController, 3);
+  public static JoystickButton xbstart = new JoystickButton(XBController, 8);
+  public static JoystickButton xbback = new JoystickButton(XBController, 7);
 
 
   /**
@@ -50,15 +58,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    XboxController XBController = new XboxController(1);
-    JoystickButton xba = new JoystickButton(XBController, 1);
-    JoystickButton xbb = new JoystickButton(XBController, 2);
-    JoystickButton xbrb = new JoystickButton(XBController, 6);
-    JoystickButton xby  = new JoystickButton(XBController, 4);
-    JoystickButton xbx = new JoystickButton(XBController, 3);
-    JoystickButton xbstart = new JoystickButton(XBController, 8);
-    JoystickButton xbback = new JoystickButton(XBController, 7);
-
     xba.toggleWhenPressed(new IntakeMotorTest(intake));
     xbb.toggleWhenPressed(new ClimberMotorTest(climber));
     xby.toggleWhenPressed(new ShooterMotorTest(shooter));
