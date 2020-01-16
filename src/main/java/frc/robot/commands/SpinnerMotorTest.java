@@ -12,7 +12,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Spinner;
 
 public class SpinnerMotorTest extends CommandBase {
-  private final double setSpeed = 0.4;
+  private double setSpeed = 0.4;
   private Spinner spinner;
 
   /**
@@ -27,6 +27,7 @@ public class SpinnerMotorTest extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Spinner Set Speed");
     spinner.testSpinnerSet(setSpeed);
     ShuffleboardHelpers.setWidgetValue("Test", "Spinner Test Status", "Running");
   }

@@ -12,7 +12,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Climber;
 
 public class ClimberMotorTest extends CommandBase {
-private final double setSpeed = 0.4;
+private double setSpeed = 0.4;
 private Climber climber;
 
   /**
@@ -27,6 +27,7 @@ private Climber climber;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Climber Set Speed");
     climber.testClimbSet(setSpeed);
     ShuffleboardHelpers.setWidgetValue("Test", "Climber Test Status", "Running");
   }

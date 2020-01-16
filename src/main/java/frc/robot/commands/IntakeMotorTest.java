@@ -12,7 +12,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class IntakeMotorTest extends CommandBase {
-  private final double speedSet = 0.4;
+  private double speedSet = 0.4;
   private Intake intake;
   private boolean spark;
   /**
@@ -27,6 +27,7 @@ public class IntakeMotorTest extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Set Speed");
     spark = ((double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Test Spark") == 1);
     intake.testIntakeSet(speedSet, spark);
     ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Running");
