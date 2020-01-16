@@ -28,4 +28,14 @@ public class Climber extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void testClimbSet(double speed) {
+    climbLeft.set(speed);
+    climbRight.set(speed);
+  }
+
+  public void testClimbStop() {
+    climbLeft.stopMotor();
+    climbRight.stopMotor();
+  }
 }

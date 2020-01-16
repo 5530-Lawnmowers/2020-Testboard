@@ -59,7 +59,11 @@ public class RobotContainer {
     JoystickButton xbstart = new JoystickButton(XBController, 8);
     JoystickButton xbback = new JoystickButton(XBController, 7);
 
-    xba.toggleWhenPressed(new SimpleMotorTest(intake));
+    xba.toggleWhenPressed(new IntakeMotorTest(intake));
+    xbb.toggleWhenPressed(new ClimberMotorTest(climber));
+    xby.toggleWhenPressed(new ShooterMotorTest(shooter));
+    xbx.toggleWhenPressed(new SpinnerMotorTest(spinner));
+    xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
   }
 
 

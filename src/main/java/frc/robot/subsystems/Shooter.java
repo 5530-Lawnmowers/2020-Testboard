@@ -28,4 +28,14 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void testShooterSet(double speed) {
+    shooter1.set(speed);
+    shooter2.set(speed);
+  }
+
+  public void testShooterStop() {
+    shooter1.stopMotor();
+    shooter2.stopMotor();
+  }
 }

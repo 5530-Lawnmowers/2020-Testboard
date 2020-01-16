@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void testboardTestingMove(double input, boolean isSpark) {
+  public void testIntakeSet(double input, boolean isSpark) {
     if (isSpark) {
       intake1.set(input);
     } else {
@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase {
     }
   }
 
-  public void testboardTestingStop() {
+  public void testIntakeStop() {
     intake1.stopMotor();
     delivery.stopMotor();
   }

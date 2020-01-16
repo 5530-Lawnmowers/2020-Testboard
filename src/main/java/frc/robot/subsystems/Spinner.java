@@ -56,4 +56,12 @@ public class Spinner extends SubsystemBase {
   public ColorMatchResult getColorMatch() {
     return colorMatch.matchClosestColor(colorSensor.getColor());
   }
+
+  public void testSpinnerSet(double speed) {
+    spinner.set(speed);
+  }
+
+  public void testSpinnerStop() {
+    spinner.stopMotor();
+  }
 }

@@ -23,29 +23,32 @@ public final class Constants {
     //These are all in flux pending final robot design
 
     //Climber motors
-    public static final int CLIMB_L = 5;
-    public static final int CLIMB_R = 2;
+    public static final int CLIMB_L = 3; //TalonSRX
+    public static final int CLIMB_R = 2; //TalonSRX
+    public static final int ADJUST = 17; //UNKNOWN
 
     //Drivetrain motors
-    public static final int DT_R1 = 9;
-    public static final int DT_R2 = 10;
-    public static final int DT_L1 = 11;
-    public static final int DT_L2 = 12;
+    public static final int DT_R1 = 9;   //TalonFX
+    public static final int DT_R2 = 10;  //TalonFX
+    public static final int DT_L1 = 11;  //TalonFX
+    public static final int DT_L2 = 12;  //TalonFX
 
     //Intake motors
-    public static final int INTAKE = 8;
-    public static final int DELIVERY = 4;
+    public static final int INTAKE = 8;   //SparkMAX (NEO 550)
+    public static final int DELIVERY = 4; //TalonSRX
 
     //Intake sensors
     public static final int DELIVERY_S1 = 0;
     public static final int DELIVERY_S2 = 1;
 
     //Shooter motors
-    public static final int SHOOTER_1 = 6;
-    public static final int SHOOTER_2 = 3;
+    public static final int SHOOTER_1 = 1; //SparkMAX
+    public static final int SHOOTER_2 = 5; //SparkMAX
+    public static final int ANGLE = 18;    //UNKNOWN
+    public static final int TURRET = 19;   //UNKNOWN
 
     //Spinner motors
-    public static final int SPIN = 7;
+    public static final int SPIN = 20;      //TalonSRX
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;

@@ -37,4 +37,31 @@ public class Drivetrain extends SubsystemBase {
     ShuffleboardHelpers.setWidgetValue("Gyro", "Yaw", gyro.getYaw());
   }
 
+  /**
+   * For test purposes only
+   * @param speed set speed
+   * @param controller "L1", "L2", "R1", or "R2" only
+   */
+  public void testDrivetrainSet(double speed, String controller) {
+    if (controller.equalsIgnoreCase("L1")) {
+      drivetrainLeft1.set(speed);
+    } else if (controller.equalsIgnoreCase("L2")) {
+      drivetrainLeft2.set(speed);
+    } else if (controller.equalsIgnoreCase("R1")) {
+      drivetrainRight1.set(speed);
+    } else if (controller.equalsIgnoreCase("R2")) {
+      drivetrainRight2.set(speed);
+    }
+  }
+
+  /**
+   * Stops all drivetrain motors
+   */
+  public void testDrivetrainStop() {
+    drivetrainLeft1.stopMotor();
+    drivetrainLeft2.stopMotor();
+    drivetrainRight1.stopMotor();
+    drivetrainRight2.stopMotor();
+  }
+
 }
