@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
+import frc.robot.commands.ThrottleMotorTest;
 
 import com.revrobotics.*;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -29,6 +30,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public Drivetrain() {
     gyro.zeroYaw();
+    setDefaultCommand(new ThrottleMotorTest(this));
   }
 
   @Override
