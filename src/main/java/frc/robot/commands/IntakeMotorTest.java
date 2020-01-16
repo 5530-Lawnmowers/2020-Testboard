@@ -21,13 +21,13 @@ public class IntakeMotorTest extends CommandBase {
   public IntakeMotorTest(Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
-    spark = ((double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Test Spark") == 1);
     addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    spark = ((double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Test Spark") == 1);
     intake.testIntakeSet(speedSet, spark);
     ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Running");
   }

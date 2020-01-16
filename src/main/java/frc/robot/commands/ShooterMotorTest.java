@@ -12,7 +12,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Shooter;
 
 public class ShooterMotorTest extends CommandBase {
-  private final double setSpeed = 0.4;
+  private double setSpeed = 0.4;
   private Shooter shooter;
   
   /**
@@ -27,6 +27,7 @@ public class ShooterMotorTest extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Shooter Set Speed");
     shooter.testShooterSet(setSpeed);
     ShuffleboardHelpers.setWidgetValue("Test", "Shooter Test Status", "Running");
   }
