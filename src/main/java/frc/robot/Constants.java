@@ -50,6 +50,10 @@ public final class Constants {
     public static final int ANGLE = 18;    //UNKNOWN
     public static final int TURRET = 19;   //UNKNOWN
 
+    //Turret sensors
+    public static final int TURRET_S1 = 2;
+    public static final int TURRET_S2 = 3;
+
     //Spinner motors
     public static final int SPIN = 20;      //TalonSRX
 
