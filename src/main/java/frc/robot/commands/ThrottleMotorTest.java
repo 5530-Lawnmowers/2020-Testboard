@@ -72,6 +72,8 @@ public class ThrottleMotorTest extends CommandBase {
     // Set the left side to the next iteration closer to leftPower
     drivetrain.testDrivetrainSet(power, "R1");
     drivetrain.testDrivetrainSet(power, "R2");
+    drivetrain.testDrivetrainSet(power, "L1");
+    drivetrain.testDrivetrainSet(power, "L2");
 	}
   
   // Called when the command is initially scheduled.
