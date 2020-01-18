@@ -28,24 +28,24 @@ public class OutputRGB extends InstantCommand {
   @Override
   public void initialize() {
     //Output RGB
-    ShuffleboardHelpers.setWidgetValue("Color", "Red", spinner.getColor().red);
-    ShuffleboardHelpers.setWidgetValue("Color", "Green", spinner.getColor().green);
-    ShuffleboardHelpers.setWidgetValue("Color", "Blue", spinner.getColor().blue);
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Red", spinner.getColor().red);
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Green", spinner.getColor().green);
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Blue", spinner.getColor().blue);
 
     //Output color match
     if (spinner.getColorMatch().color == Constants.blueTarget) {
-      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Blue");
+      ShuffleboardHelpers.setWidgetValue("Sensors", "Match", "Blue");
     } else if (spinner.getColorMatch().color == Constants.redTarget) {
-      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Red");
+      ShuffleboardHelpers.setWidgetValue("Sensors", "Match", "Red");
     } else if (spinner.getColorMatch().color == Constants.greenTarget) {
-      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Green");
+      ShuffleboardHelpers.setWidgetValue("Sensors", "Match", "Green");
     } else if (spinner.getColorMatch().color == Constants.yellowTarget) {
-      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Yellow");
+      ShuffleboardHelpers.setWidgetValue("Sensors", "Match", "Yellow");
     } else {
-      ShuffleboardHelpers.setWidgetValue("Color", "Match", "Unknown");
+      ShuffleboardHelpers.setWidgetValue("Sensors", "Match", "Unknown");
     }
 
     //Output confidence
-    ShuffleboardHelpers.setWidgetValue("Color", "Confidence", spinner.getColorMatch().confidence);
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Confidence", spinner.getColorMatch().confidence);
   }
 }
