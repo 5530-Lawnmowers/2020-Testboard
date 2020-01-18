@@ -34,12 +34,13 @@ public class Robot extends TimedRobot {
     
 
     //For color sensor test only, creates shuffleboard tab and fields
-    Shuffleboard.getTab("Color");
-    Shuffleboard.getTab("Color").add("Red", 0);
-    Shuffleboard.getTab("Color").add("Green", 0);
-    Shuffleboard.getTab("Color").add("Blue", 0);
-    Shuffleboard.getTab("Color").add("Match", "Unknown");
-    Shuffleboard.getTab("Color").add("Confidence", 0);
+    Shuffleboard.getTab("Sensors");
+    Shuffleboard.getTab("Sensors").add("Red", 0);
+    Shuffleboard.getTab("Sensors").add("Green", 0);
+    Shuffleboard.getTab("Sensors").add("Blue", 0);
+    Shuffleboard.getTab("Sensors").add("Match", "Unknown");
+    Shuffleboard.getTab("Sensors").add("Confidence", 0);
+    Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
     Shuffleboard.getTab("Test");
     Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
     Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
@@ -52,8 +53,6 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
-    Shuffleboard.getTab("Gyro");
-    Shuffleboard.getTab("Gyro").add("Yaw",0);
     Shuffleboard.getTab("Drivetrain").add("Right1", 0);
     Shuffleboard.getTab("Drivetrain").add("Right2", 0);
     Shuffleboard.getTab("Drivetrain").add("Left1", 0);
