@@ -57,6 +57,7 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
+    Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
     Shuffleboard.getTab("Drivetrain").add("Right1", 0);
     Shuffleboard.getTab("Drivetrain").add("Right2", 0);
     Shuffleboard.getTab("Drivetrain").add("Left1", 0);

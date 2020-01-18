@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
 
@@ -27,6 +28,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter1.getEncoder().getVelocity());
   }
 
   public void testShooterSet(double speed) {
