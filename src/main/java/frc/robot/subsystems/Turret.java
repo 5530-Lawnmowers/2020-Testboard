@@ -47,13 +47,13 @@ public class Turret extends SubsystemBase {
    * @return {@type boolean}
    */
   public boolean testLimit() {
-    return hardStop1.get() || hardStop2.get();
+    return !hardStop1.get() || !hardStop2.get();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", hardStop1.get());
-    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", hardStop2.get());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", !hardStop1.get());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", !hardStop2.get());
   }
 }
