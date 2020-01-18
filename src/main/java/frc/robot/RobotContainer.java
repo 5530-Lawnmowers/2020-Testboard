@@ -44,6 +44,8 @@ public class RobotContainer {
   public static JoystickButton xbx = new JoystickButton(XBController, 3);
   public static JoystickButton xbstart = new JoystickButton(XBController, 8);
   public static JoystickButton xbback = new JoystickButton(XBController, 7);
+  public static JoystickButton xblstick = new JoystickButton(XBController, 9);
+  public static JoystickButton xbrstick = new JoystickButton(XBController, 10);
 
 
   /**
@@ -69,6 +71,7 @@ public class RobotContainer {
     xbback.toggleWhenPressed(new DeliveryMotorTest(delivery));
     xblb.toggleWhenPressed(new TurretMotorTest(turret, false));
     xbrb.toggleWhenPressed(new TurretMotorTest(turret, true));
+    xblstick.toggleWhenPressed(new AccelRecoveryShooterTest(shooter));
   }
 
 

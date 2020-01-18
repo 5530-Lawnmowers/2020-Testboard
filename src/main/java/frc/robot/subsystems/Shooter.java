@@ -40,4 +40,8 @@ public class Shooter extends SubsystemBase {
     shooter1.stopMotor();
     shooter2.stopMotor();
   }
+
+  public double getShooterVelocity() {
+    return shooter1.getEncoder().getVelocity();
+  }
 }
