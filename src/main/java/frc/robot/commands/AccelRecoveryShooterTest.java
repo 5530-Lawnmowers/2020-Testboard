@@ -33,10 +33,10 @@ public class AccelRecoveryShooterTest extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(shooter.getShooterVelocity() < THRESHOLD) {
-      shooter.testShooterSet(MAX);
+    if(shooter.getShooterVelocity() > -THRESHOLD) {
+      shooter.testShooterSet(-MAX);
     } else {
-      shooter.testShooterSet(HOLD);
+      shooter.testShooterSet(-HOLD);
     }
   }
 
