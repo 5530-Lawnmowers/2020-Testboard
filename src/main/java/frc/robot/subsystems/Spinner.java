@@ -11,12 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.OutputRGB;
-
+import frc.robot.helpers.ShuffleboardHelpers;
 import edu.wpi.first.wpilibj.util.Color;
 
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Spinner extends SubsystemBase {
@@ -32,6 +33,7 @@ public class Spinner extends SubsystemBase {
     colorMatch.addColorMatch(Constants.greenTarget);
     colorMatch.addColorMatch(Constants.redTarget);
     colorMatch.addColorMatch(Constants.yellowTarget);
+    spinner.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
   }
 
   @Override
@@ -39,6 +41,7 @@ public class Spinner extends SubsystemBase {
     // This method will be called once per scheduler run
     // In theory, this should schedule the command to output the RGB values.
     CommandScheduler.getInstance().schedule(new OutputRGB(this));
+    ShuffleboardHelpers.setWidgetValue("Encoders", "Spinner", spinner.getSelectedSensorPosition());
   }
 
   /**
