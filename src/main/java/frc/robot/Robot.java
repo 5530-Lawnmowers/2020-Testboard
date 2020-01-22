@@ -58,10 +58,19 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
     Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
+    //Drivetrain Outputs
     Shuffleboard.getTab("Drivetrain").add("Right1", 0);
     Shuffleboard.getTab("Drivetrain").add("Right2", 0);
     Shuffleboard.getTab("Drivetrain").add("Left1", 0);
     Shuffleboard.getTab("Drivetrain").add("Left2", 0);
+    //Encoders
+    Shuffleboard.getTab("Encoders").add("Hood", 0);
+    Shuffleboard.getTab("Encoders").add("Spinner", 0);
+    Shuffleboard.getTab("Encoders").add("Delivery 1", 0);
+    Shuffleboard.getTab("Encoders").add("Delivery 2", 0);
+    Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0);
+    Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0);
+    Shuffleboard.getTab("Encoders").add("Turret", 0);
 
     m_robotContainer = new RobotContainer();
   }

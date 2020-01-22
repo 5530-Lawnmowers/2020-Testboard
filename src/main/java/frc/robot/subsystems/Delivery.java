@@ -9,8 +9,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -26,12 +28,15 @@ public class Delivery extends SubsystemBase {
    * Creates a new Delivery.
    */
   public Delivery() {
-
+    delivery1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
+    delivery2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 1", delivery1.getSelectedSensorPosition());
+    ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 2", delivery2.getSelectedSensorPosition());
   }
 
 
