@@ -6,7 +6,18 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
+import edu.wpi.first.wpilibj.util.Units;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import com.ctre.phoenix.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.sensors.PigeonIMU;
+import org.opencv.core.RotatedRect;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -25,7 +36,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Drivetrain extends SubsystemBase {
   //Drive test
   private final double driveMultiplier = 0.9;
-
+  
   private final WPI_TalonFX drivetrainLeft1 = new WPI_TalonFX(Constants.DT_L1);
   private final WPI_TalonFX drivetrainLeft2 = new WPI_TalonFX(Constants.DT_L2);
   private final WPI_TalonFX drivetrainRight1 = new WPI_TalonFX(Constants.DT_R1);
@@ -36,6 +47,14 @@ public class Drivetrain extends SubsystemBase {
   private final SpeedControllerGroup drivetrainRight;
   private final DifferentialDrive diffDrive;
 
+  public static double StartingPose;
+
+  public static float WheelCircumfrance = (float) 18.8495559215;
+  public static DifferentialDriveOdometry DDO = new DifferentialDriveOdometry(new Rotation2d());
+  public static PigeonIMU pigeon = new PigeonIMU(15);
+  public static Rotation2d heading = new Rotation2d();
+  public static float leftDistance = 0;
+  public static float rightDistance = 0;
   private final AHRS gyro = new AHRS(SerialPort.Port.kMXP);
 
   /**
@@ -46,7 +65,30 @@ public class Drivetrain extends SubsystemBase {
     drivetrainLeft2.setInverted(false);
     drivetrainRight1.setInverted(false);
     drivetrainRight2.setInverted(false);
+    drivetrainLeft1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    drivetrainRight1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    drivetrainLeft1.setSelectedSensorPosition(0);
+    drivetrainRight1.setSelectedSensorPosition(0);
+    drivetrainRight1.config_kF(0, .05, 10);
+    drivetrainRight1.config_kP(0, .01, 10);
+    drivetrainRight1.config_kI(0, .007, 10);
+    drivetrainRight1.config_kD(0, .007, 10);
 
+    drivetrainLeft1.config_kF(0, .05, 10);
+    drivetrainLeft1.config_kP(0, .01, 10);
+    drivetrainLeft1.config_kI(0, .007, 10);
+    drivetrainLeft1.config_kD(0, .007, 10);
+
+    drivetrainRight2.config_kF(0, .05, 10);
+    drivetrainRight2.config_kP(0, .01, 10);
+    drivetrainRight2.config_kI(0, .007, 10);
+    drivetrainRight2.config_kD(0, .007, 10);
+
+    drivetrainLeft2.config_kF(0, .05, 10);
+    drivetrainLeft2.config_kP(0, .01, 10);
+    drivetrainLeft2.config_kI(0, .007, 10);
+    drivetrainLeft2.config_kD(0, .007, 10);
+    
     drivetrainLeft = new SpeedControllerGroup(drivetrainLeft1, drivetrainLeft2);
     drivetrainRight = new SpeedControllerGroup(drivetrainRight1, drivetrainRight2);
     diffDrive = new DifferentialDrive(drivetrainLeft, drivetrainRight);
@@ -113,6 +155,67 @@ public class Drivetrain extends SubsystemBase {
       drivetrainRight2.set(speed);
     }
   }
+  public void updatePose(){
+    DDO.update(new Rotation2d(Units.degreesToRadians(getModPigeonYaw())), Units.inchesToMeters(getDistanceLeft()), Units.inchesToMeters(getDistanceRight()));
+  }
+  public void setVelocity(double left, double right){
+    drivetrainRight1.set(ControlMode.Velocity, MetersToUnits(right));
+    drivetrainRight2.set(ControlMode.Velocity, MetersToUnits(right));
+    drivetrainLeft1.set(ControlMode.Velocity, MetersToUnits(left));
+    drivetrainLeft2.set(ControlMode.Velocity, MetersToUnits(left));
+    /*System.out.println(getPose());
+    System.out.println(RFSRX.getSelectedSensorVelocity());
+    System.out.println(right);
+    System.out.println(MetersToUnits(right));*/
+  }
+  public double MetersToUnits(double meters){
+    meters = Units.metersToInches(meters);
+    meters = meters / (6 * Math.PI);
+    meters = meters * 2048;
+    meters = meters / 10;
+    return meters;
+  }
+  public double getDistanceLeft(){
+    leftDistance = (float) (drivetrainLeft1.getSelectedSensorPosition());
+    leftDistance = leftDistance/2048;
+    leftDistance = leftDistance * WheelCircumfrance;
+   return leftDistance;
+ }
+ public double getDistanceRight(){
+    rightDistance = (float) (drivetrainRight1.getSelectedSensorPosition());
+    rightDistance = rightDistance/2048;
+    rightDistance = rightDistance * WheelCircumfrance;
+   return leftDistance;
+ }
+ public void resetSensors(){
+   DDO.resetPosition(new Pose2d(), new Rotation2d());
+   drivetrainLeft1.setSelectedSensorPosition(0);
+   drivetrainRight1.setSelectedSensorPosition(0);
+ }
+ public static double getPigeonCompassHeading(){
+  if(getPigeonYaw() < 0) {return 360 - (getPigeonYaw() % 360.0 + 360.0);}
+  return 360 - (getPigeonYaw() % 360.0);
+}
+public static double getPigeonYaw(){
+  double[] output = new double[3];
+  pigeon.getYawPitchRoll(output);
+  return output[0];
+}
+public static double getModPigeonYaw(){
+  if (getPigeonCompassHeading() - StartingPose < 0){
+    return getPigeonCompassHeading() - StartingPose + 360;
+  }
+  return getPigeonCompassHeading() - StartingPose;
+
+}
+public Pose2d getPose(){
+  updatePose();
+  return DDO.getPoseMeters();
+}
+public void setStartpose(double start){
+  StartingPose = start;
+}
+
 
   /**
    * Stops all drivetrain motors

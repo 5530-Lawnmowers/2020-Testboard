@@ -7,10 +7,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import frc.robot.commands.*;
 import frc.robot.helpers.ShuffleboardHelpers;
+import frc.robot.helpers.TrajectoryHelper;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -36,6 +41,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   public static XboxController XBController = new XboxController(1);
+
   public static JoystickButton xba = new JoystickButton(XBController, 1);
   public static JoystickButton xbb = new JoystickButton(XBController, 2);
   public static JoystickButton xblb = new JoystickButton(XBController, 5);
@@ -70,8 +76,12 @@ public class RobotContainer {
     xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
     xbback.toggleWhenPressed(new DeliveryMotorTest(delivery));
     xblb.toggleWhenPressed(new TurretMotorTest(turret, false));
+    
     xbrb.toggleWhenPressed(new TurretMotorTest(turret, true));
     xblstick.toggleWhenPressed(new AccelRecoveryShooterTest(shooter));
+    //Keep in mind that the degrees are relative to when the setHeading class was called in the drivetrain and the pose is relative to when setPose() was called
+    //xbrstick.toggleWhenPressed(new RamseteCommand(TrajectoryHelper.trajectory(), drivetrain::getPose, new RamseteController(2, .7), new DifferentialDriveKinematics(.62), drivetrain::setVelocity, drivetrain));
+ 
   }
 
 
