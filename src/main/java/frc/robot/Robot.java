@@ -63,6 +63,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Drivetrain").add("Right2", 0);
     Shuffleboard.getTab("Drivetrain").add("Left1", 0);
     Shuffleboard.getTab("Drivetrain").add("Left2", 0);
+    Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
+    Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
     //Encoders
     Shuffleboard.getTab("Encoders").add("Hood", 0);
     Shuffleboard.getTab("Encoders").add("Spinner", 0);
