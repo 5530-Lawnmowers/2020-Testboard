@@ -28,6 +28,7 @@ public class Turret extends SubsystemBase {
    */
   public Turret() {
     turretSpin.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    turretSpin.setSelectedSensorPosition(0);
   }
 
   /**

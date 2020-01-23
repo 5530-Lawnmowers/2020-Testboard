@@ -30,6 +30,8 @@ public class Delivery extends SubsystemBase {
   public Delivery() {
     delivery1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
     delivery2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
+    delivery1.setSelectedSensorPosition(0);
+    delivery2.setSelectedSensorPosition(0);
   }
 
   @Override
