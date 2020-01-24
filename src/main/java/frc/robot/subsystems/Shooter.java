@@ -11,12 +11,16 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
 
 
 public class Shooter extends SubsystemBase {
   private final CANSparkMax shooter1 = new CANSparkMax(Constants.SHOOTER_1, CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax shooter2 = new CANSparkMax(Constants.SHOOTER_2, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+  private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
 
   /**
    * Creates a new Shooter.
@@ -34,6 +38,14 @@ public class Shooter extends SubsystemBase {
   public void testShooterSet(double speed) {
     shooter1.set(speed);
     shooter2.set(speed);
+  }
+
+  public void testHoodSet(double speed) {
+    hoodAdjust.set(speed);
+  }
+
+  public void testHoodStop() {
+    hoodAdjust.stopMotor();
   }
 
   public void testShooterStop() {
