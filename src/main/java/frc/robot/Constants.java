@@ -40,7 +40,7 @@ public final class Constants {
     public static final int DELIVERY_1 = 4; //TalonSRX
     public static final int DELIVERY_2 = 13;//TalonSRX
 
-    //Intake sensors
+    //Delivery sensors
     public static final int DELIVERY_S1 = 0;
     public static final int DELIVERY_S2 = 1;
 
