@@ -39,6 +39,8 @@ public class Delivery extends SubsystemBase {
     // This method will be called once per scheduler run
     ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 1", delivery1.getSelectedSensorPosition());
     ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 2", delivery2.getSelectedSensorPosition());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 1", deliverySensor1.get());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 2", deliverySensor2.get());
   }
 
 
