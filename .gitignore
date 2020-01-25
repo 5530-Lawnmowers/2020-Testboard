@@ -160,3 +160,9 @@ imgui.ini
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
 vendordeps/REVRobotics.json
+2020-Testboard.iml
+2020-Testboard.ipr
+2020-Testboard.iws
+first-bsd-license.txt
+README.md
+.idea\
