@@ -25,7 +25,7 @@ public final class Constants {
     //Climber motors
     public static final int CLIMB_L = 3; //TalonSRX
     public static final int CLIMB_R = 2; //TalonSRX
-    public static final int ADJUST = 17; //UNKNOWN
+    public static final int ADJUST = 14; //UNKNOWN
 
     //Drivetrain motors
     public static final int DT_R1 = 9;   //TalonFX
@@ -38,24 +38,24 @@ public final class Constants {
 
     //Delivery motors
     public static final int DELIVERY_1 = 4; //TalonSRX
-    public static final int DELIVERY_2 = 21;//TalonSRX
+    public static final int DELIVERY_2 = 13;//TalonSRX
 
-    //Intake sensors
+    //Delivery sensors
     public static final int DELIVERY_S1 = 0;
     public static final int DELIVERY_S2 = 1;
 
     //Shooter motors
     public static final int SHOOTER_1 = 1; //SparkMAX
     public static final int SHOOTER_2 = 5; //SparkMAX
-    public static final int ANGLE = 18;    //UNKNOWN
-    public static final int TURRET = 19;   //UNKNOWN
+    public static final int ANGLE = 15;    //UNKNOWN
+    public static final int TURRET = 16;   //UNKNOWN
 
     //Turret sensors
     public static final int TURRET_S1 = 2;
     public static final int TURRET_S2 = 3;
 
     //Spinner motors
-    public static final int SPIN = 20;      //TalonSRX
+    public static final int SPIN = 17;      //TalonSRX
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;

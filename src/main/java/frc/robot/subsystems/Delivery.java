@@ -30,6 +30,8 @@ public class Delivery extends SubsystemBase {
   public Delivery() {
     delivery1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
     delivery2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0 ,10);
+    delivery1.setSelectedSensorPosition(0);
+    delivery2.setSelectedSensorPosition(0);
   }
 
   @Override
@@ -37,6 +39,8 @@ public class Delivery extends SubsystemBase {
     // This method will be called once per scheduler run
     ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 1", delivery1.getSelectedSensorPosition());
     ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 2", delivery2.getSelectedSensorPosition());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 1", deliverySensor1.get());
+    ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 2", deliverySensor2.get());
   }
 
 

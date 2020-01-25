@@ -34,6 +34,7 @@ public class Spinner extends SubsystemBase {
     colorMatch.addColorMatch(Constants.redTarget);
     colorMatch.addColorMatch(Constants.yellowTarget);
     spinner.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    spinner.setSelectedSensorPosition(0);
   }
 
   @Override

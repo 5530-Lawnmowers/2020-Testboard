@@ -65,8 +65,8 @@ public class Drivetrain extends SubsystemBase {
     drivetrainLeft2.setInverted(false);
     drivetrainRight1.setInverted(false);
     drivetrainRight2.setInverted(false);
-    drivetrainLeft1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-    drivetrainRight1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    drivetrainLeft1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
+    drivetrainRight1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
     drivetrainLeft1.setSelectedSensorPosition(0);
     drivetrainRight1.setSelectedSensorPosition(0);
     drivetrainRight1.config_kF(0, .05, 10);
@@ -106,6 +106,8 @@ public class Drivetrain extends SubsystemBase {
     ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right2", drivetrainRight2.get());
     ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left1", drivetrainLeft1.get());
     ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left2", drivetrainLeft2.get());
+    ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left Position", drivetrainLeft1.getSelectedSensorPosition());
+    ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right Position", drivetrainRight1.getSelectedSensorPosition());
   }
 
   //Drive test only

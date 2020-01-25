@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class Turret extends SubsystemBase {
-  private final WPI_TalonFX turretSpin = new WPI_TalonFX(Constants.TURRET);
+  private final WPI_TalonSRX turretSpin = new WPI_TalonSRX(Constants.TURRET);
 
   //Emergency stop the turret
   private final DigitalInput hardStop1 = new DigitalInput(Constants.TURRET_S1);
@@ -28,6 +28,7 @@ public class Turret extends SubsystemBase {
    */
   public Turret() {
     turretSpin.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    turretSpin.setSelectedSensorPosition(0);
   }
 
   /**

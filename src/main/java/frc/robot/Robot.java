@@ -43,6 +43,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
     Shuffleboard.getTab("Sensors").add("Turret Limit 1", false);
     Shuffleboard.getTab("Sensors").add("Turret Limit 2", false);
+    Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false);
+    Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false);
     Shuffleboard.getTab("Test");
     Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
     Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
@@ -63,6 +65,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Drivetrain").add("Right2", 0);
     Shuffleboard.getTab("Drivetrain").add("Left1", 0);
     Shuffleboard.getTab("Drivetrain").add("Left2", 0);
+    Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
+    Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
     //Encoders
     Shuffleboard.getTab("Encoders").add("Hood", 0);
     Shuffleboard.getTab("Encoders").add("Spinner", 0);
