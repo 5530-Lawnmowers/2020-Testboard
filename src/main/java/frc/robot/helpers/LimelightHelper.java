@@ -13,12 +13,24 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 /**
  * Add your docs here.
  */
-public class limelightHelper {
-    public void getRawY(){
+public class LimelightHelper {
+    public static double getRawY(){
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
         double y = ty.getDouble(0.0);
-        System.out.println(y);
+        return y;
+      }
+      public static double getRawX(){
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableEntry tx = table.getEntry("tx");
+        double x = tx.getDouble(0.0);
+        return x;
+      }
+      public static double getRawA(){
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableEntry ta = table.getEntry("ta");
+        double a = ta.getDouble(0.0);
+        return a;
       }
       public static double getDistance() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
