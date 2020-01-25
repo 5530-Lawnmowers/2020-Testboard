@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -70,10 +71,10 @@ public class ThrottleMotorTest extends CommandBase {
         if (Math.abs(oldTrigger - power) > 0.2)
             power = accelerate(power);
         // Set the left side to the next iteration closer to leftPower
-        drivetrain.testDrivetrainSet(power, "R1");
-        drivetrain.testDrivetrainSet(power, "R2");
-        drivetrain.testDrivetrainSet(power, "L1");
-        drivetrain.testDrivetrainSet(power, "L2");
+        drivetrain.testDrivetrainSet(power, Constants.DT_R1);
+        drivetrain.testDrivetrainSet(power, Constants.DT_R2);
+        drivetrain.testDrivetrainSet(power, Constants.DT_L1);
+        drivetrain.testDrivetrainSet(power, Constants.DT_L2);
     }
 
     // Called when the command is initially scheduled.

@@ -146,16 +146,16 @@ public class Drivetrain extends SubsystemBase {
      * For test purposes only
      *
      * @param speed      set speed
-     * @param controller "L1", "L2", "R1", or "R2" only
+     * @param controller Constants.DT_L1, DT_L2, DT_R1, DT_R2
      */
-    public void testDrivetrainSet(double speed, String controller) {
-        if (controller.equalsIgnoreCase("L1")) {
+    public void testDrivetrainSet(double speed, int controller) {
+        if (controller == Constants.DT_L1) {
             drivetrainLeft1.set(speed);
-        } else if (controller.equalsIgnoreCase("L2")) {
+        } else if (controller == Constants.DT_L2) {
             drivetrainLeft2.set(speed);
-        } else if (controller.equalsIgnoreCase("R1")) {
+        } else if (controller == Constants.DT_R1) {
             drivetrainRight1.set(speed);
-        } else if (controller.equalsIgnoreCase("R2")) {
+        } else if (controller == Constants.DT_R2) {
             drivetrainRight2.set(speed);
         }
     }

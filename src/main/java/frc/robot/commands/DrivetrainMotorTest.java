@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Drivetrain;
 
@@ -27,10 +28,10 @@ public class DrivetrainMotorTest extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        drivetrain.testDrivetrainSet(setSpeed, "L1");
-        drivetrain.testDrivetrainSet(setSpeed, "L2");
-        drivetrain.testDrivetrainSet(setSpeed, "R1");
-        drivetrain.testDrivetrainSet(setSpeed, "R2");
+        drivetrain.testDrivetrainSet(setSpeed, Constants.DT_R1);
+        drivetrain.testDrivetrainSet(setSpeed, Constants.DT_R2);
+        drivetrain.testDrivetrainSet(setSpeed, Constants.DT_L1);
+        drivetrain.testDrivetrainSet(setSpeed, Constants.DT_L2);
         ShuffleboardHelpers.setWidgetValue("Test", "Drivetrain Test Status", "Running");
     }
 
