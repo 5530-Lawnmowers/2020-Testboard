@@ -27,71 +27,70 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  
-  private final Climber climber = new Climber();
-  private final Drivetrain drivetrain = new Drivetrain();
-  private final Intake intake = new Intake();
-  private final Shooter shooter = new Shooter();
-  private final Spinner spinner = new Spinner();
-  private final Delivery delivery = new Delivery();
-  private final Turret turret = new Turret();
+    // The robot's subsystems and commands are defined here...
+    private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+    private final Climber climber = new Climber();
+    private final Drivetrain drivetrain = new Drivetrain();
+    private final Intake intake = new Intake();
+    private final Shooter shooter = new Shooter();
+    private final Spinner spinner = new Spinner();
+    private final Delivery delivery = new Delivery();
+    private final Turret turret = new Turret();
 
-  public static XboxController XBController = new XboxController(1);
+    private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public static JoystickButton xba = new JoystickButton(XBController, 1);
-  public static JoystickButton xbb = new JoystickButton(XBController, 2);
-  public static JoystickButton xblb = new JoystickButton(XBController, 5);
-  public static JoystickButton xbrb = new JoystickButton(XBController, 6);
-  public static JoystickButton xby  = new JoystickButton(XBController, 4);
-  public static JoystickButton xbx = new JoystickButton(XBController, 3);
-  public static JoystickButton xbstart = new JoystickButton(XBController, 8);
-  public static JoystickButton xbback = new JoystickButton(XBController, 7);
-  public static JoystickButton xblstick = new JoystickButton(XBController, 9);
-  public static JoystickButton xbrstick = new JoystickButton(XBController, 10);
+    public static XboxController XBController = new XboxController(1);
 
-
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-  }
-
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    xba.toggleWhenPressed(new IntakeMotorTest(intake));
-    xbb.toggleWhenPressed(new ClimberMotorTest(climber));
-    xby.toggleWhenPressed(new ShooterMotorTest(shooter));
-    xbx.toggleWhenPressed(new SpinnerMotorTest(spinner));
-    xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
-    xbback.toggleWhenPressed(new DeliveryMotorTest(delivery));
-    xblb.toggleWhenPressed(new TurretMotorTest(turret, false));
-    
-    xbrb.toggleWhenPressed(new TurretMotorTest(turret, true));
-    xblstick.toggleWhenPressed(new AccelRecoveryShooterTest(shooter));
-    //Keep in mind that the degrees are relative to when the setHeading class was called in the drivetrain and the pose is relative to when setPose() was called
-    //xbrstick.toggleWhenPressed(new RamseteCommand(TrajectoryHelper.trajectory(), drivetrain::getPose, new RamseteController(2, .7), new DifferentialDriveKinematics(.62), drivetrain::setVelocity, drivetrain));
- 
-  }
+    public static JoystickButton xba = new JoystickButton(XBController, 1);
+    public static JoystickButton xbb = new JoystickButton(XBController, 2);
+    public static JoystickButton xblb = new JoystickButton(XBController, 5);
+    public static JoystickButton xbrb = new JoystickButton(XBController, 6);
+    public static JoystickButton xby = new JoystickButton(XBController, 4);
+    public static JoystickButton xbx = new JoystickButton(XBController, 3);
+    public static JoystickButton xbstart = new JoystickButton(XBController, 8);
+    public static JoystickButton xbback = new JoystickButton(XBController, 7);
+    public static JoystickButton xblstick = new JoystickButton(XBController, 9);
+    public static JoystickButton xbrstick = new JoystickButton(XBController, 10);
 
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
+    /**
+     * The container for the robot.  Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+    }
+
+    /**
+     * Use this method to define your button->command mappings.  Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
+     * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
+        xba.toggleWhenPressed(new IntakeMotorTest(intake));
+        xbb.toggleWhenPressed(new ClimberMotorTest(climber));
+        xby.toggleWhenPressed(new ShooterMotorTest(shooter));
+        xbx.toggleWhenPressed(new SpinnerMotorTest(spinner));
+        xbstart.toggleWhenPressed(new DrivetrainMotorTest(drivetrain));
+        xbback.toggleWhenPressed(new DeliveryMotorTest(delivery));
+        xblb.toggleWhenPressed(new TurretMotorTest(turret, false));
+
+        xbrb.toggleWhenPressed(new TurretMotorTest(turret, true));
+        xblstick.toggleWhenPressed(new AccelRecoveryShooterTest(shooter));
+        //Keep in mind that the degrees are relative to when the setHeading class was called in the drivetrain and the pose is relative to when setPose() was called
+        //xbrstick.toggleWhenPressed(new RamseteCommand(TrajectoryHelper.trajectory(), drivetrain::getPose, new RamseteController(2, .7), new DifferentialDriveKinematics(.62), drivetrain::setVelocity, drivetrain));
+    }
+
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
+        return m_autoCommand;
+    }
 }

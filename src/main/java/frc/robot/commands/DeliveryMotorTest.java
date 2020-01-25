@@ -12,41 +12,41 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Delivery;
 
 public class DeliveryMotorTest extends CommandBase {
-  private double speedSet;
-  private Delivery delivery;
-  
-  /**
-   * Creates a new DeliveryMotorTest.
-   */
-  public DeliveryMotorTest(Delivery delivery) {
-    this.delivery = delivery;
-    addRequirements(delivery);
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
+    private double speedSet;
+    private Delivery delivery;
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Delivery Set Speed");
-    delivery.testDeliverySet(speedSet);
-    ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Running");
-  }
+    /**
+     * Creates a new DeliveryMotorTest.
+     */
+    public DeliveryMotorTest(Delivery delivery) {
+        this.delivery = delivery;
+        addRequirements(delivery);
+        // Use addRequirements() here to declare subsystem dependencies.
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Delivery Set Speed");
+        delivery.testDeliverySet(speedSet);
+        ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Running");
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    delivery.testDeliveryStop();
-    ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Ended");
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        delivery.testDeliveryStop();
+        ShuffleboardHelpers.setWidgetValue("Test", "Delivery Test Status", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

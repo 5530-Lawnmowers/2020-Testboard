@@ -12,41 +12,41 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Shooter;
 
 public class ShooterMotorTest extends CommandBase {
-  private double setSpeed = 0.4;
-  private Shooter shooter;
-  
-  /**
-   * Creates a new ShooterMotorTest.
-   */
-  public ShooterMotorTest(Shooter shooter) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.shooter = shooter;
-    addRequirements(shooter);
-  }
+    private double setSpeed = 0.4;
+    private Shooter shooter;
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Shooter Set Speed");
-    shooter.testShooterSet(setSpeed);
-    ShuffleboardHelpers.setWidgetValue("Test", "Shooter Test Status", "Running");
-  }
+    /**
+     * Creates a new ShooterMotorTest.
+     */
+    public ShooterMotorTest(Shooter shooter) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.shooter = shooter;
+        addRequirements(shooter);
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Shooter Set Speed");
+        shooter.testShooterSet(setSpeed);
+        ShuffleboardHelpers.setWidgetValue("Test", "Shooter Test Status", "Running");
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    shooter.testShooterStop();
-    ShuffleboardHelpers.setWidgetValue("Test", "Shooter Test Status", "Ended");
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        shooter.testShooterStop();
+        ShuffleboardHelpers.setWidgetValue("Test", "Shooter Test Status", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

@@ -14,28 +14,28 @@ import com.revrobotics.*;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Climber extends SubsystemBase {
-  private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
-  private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);
+    private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
+    private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);
 
-  /**
-   * Creates a new Climber.
-   */
-  public Climber() {
+    /**
+     * Creates a new Climber.
+     */
+    public Climber() {
 
-  }
+    }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+    }
 
-  public void testClimbSet(double speed) {
-    climbLeft.set(speed);
-    climbRight.set(speed);
-  }
+    public void testClimbSet(double speed) {
+        climbLeft.set(speed);
+        climbRight.set(speed);
+    }
 
-  public void testClimbStop() {
-    climbLeft.stopMotor();
-    climbRight.stopMotor();
-  }
+    public void testClimbStop() {
+        climbLeft.stopMotor();
+        climbRight.stopMotor();
+    }
 }

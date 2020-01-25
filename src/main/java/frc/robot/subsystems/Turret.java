@@ -17,48 +17,50 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class Turret extends SubsystemBase {
-  private final WPI_TalonSRX turretSpin = new WPI_TalonSRX(Constants.TURRET);
+    private final WPI_TalonSRX turretSpin = new WPI_TalonSRX(Constants.TURRET);
 
-  //Emergency stop the turret
-  private final DigitalInput hardStop1 = new DigitalInput(Constants.TURRET_S1);
-  private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
+    //Emergency stop the turret
+    private final DigitalInput hardStop1 = new DigitalInput(Constants.TURRET_S1);
+    private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
 
-  /**
-   * Creates a new Turret.
-   */
-  public Turret() {
-    turretSpin.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-    turretSpin.setSelectedSensorPosition(0);
-  }
+    /**
+     * Creates a new Turret.
+     */
+    public Turret() {
+        turretSpin.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+        turretSpin.setSelectedSensorPosition(0);
+    }
 
-  /**
-   * For test purposes only
-   * @param speed set speed
-   */
-  public void testTurretSet(double speed) {
-    turretSpin.set(speed);
-  }
+    /**
+     * For test purposes only
+     *
+     * @param speed set speed
+     */
+    public void testTurretSet(double speed) {
+        turretSpin.set(speed);
+    }
 
-  /**
-   * For test purposes only
-   */
-  public void testTurretStop() {
-    turretSpin.stopMotor();
-  }
+    /**
+     * For test purposes only
+     */
+    public void testTurretStop() {
+        turretSpin.stopMotor();
+    }
 
-  /**
-   * For test purposes only
-   * @return {@type boolean}
-   */
-  public boolean testLimit() {
-    return !hardStop1.get() || !hardStop2.get();
-  }
+    /**
+     * For test purposes only
+     *
+     * @return {@type boolean}
+     */
+    public boolean testLimit() {
+        return !hardStop1.get() || !hardStop2.get();
+    }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", !hardStop1.get());
-    ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", !hardStop2.get());
-    ShuffleboardHelpers.setWidgetValue("Encoders", "Turret", turretSpin.getSelectedSensorPosition());
-  }
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+        ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", !hardStop1.get());
+        ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", !hardStop2.get());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret", turretSpin.getSelectedSensorPosition());
+    }
 }

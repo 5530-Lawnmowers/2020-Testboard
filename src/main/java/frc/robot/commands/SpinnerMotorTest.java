@@ -12,41 +12,41 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Spinner;
 
 public class SpinnerMotorTest extends CommandBase {
-  private double setSpeed = 0.4;
-  private Spinner spinner;
+    private double setSpeed = 0.4;
+    private Spinner spinner;
 
-  /**
-   * Creates a new SpinnerMotorTest.
-   */
-  public SpinnerMotorTest(Spinner spinner) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.spinner = spinner;
-    addRequirements(spinner);
-  }
+    /**
+     * Creates a new SpinnerMotorTest.
+     */
+    public SpinnerMotorTest(Spinner spinner) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.spinner = spinner;
+        addRequirements(spinner);
+    }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Spinner Set Speed");
-    spinner.testSpinnerSet(setSpeed);
-    ShuffleboardHelpers.setWidgetValue("Test", "Spinner Test Status", "Running");
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Spinner Set Speed");
+        spinner.testSpinnerSet(setSpeed);
+        ShuffleboardHelpers.setWidgetValue("Test", "Spinner Test Status", "Running");
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    spinner.testSpinnerStop();
-    ShuffleboardHelpers.setWidgetValue("Test", "Spinner Test Status", "Ended");
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        spinner.testSpinnerStop();
+        ShuffleboardHelpers.setWidgetValue("Test", "Spinner Test Status", "Ended");
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

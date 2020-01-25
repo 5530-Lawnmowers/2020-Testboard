@@ -19,142 +19,140 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
+    private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+    private RobotContainer m_robotContainer;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
-  @Override
-  public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    
+    /**
+     * This function is run when the robot is first started up and should be used for any
+     * initialization code.
+     */
+    @Override
+    public void robotInit() {
+        // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+        // autonomous chooser on the dashboard.
 
-    //For color sensor test only, creates shuffleboard tab and fields
-    Shuffleboard.getTab("Sensors");
-    Shuffleboard.getTab("Sensors").add("Red", 0);
-    Shuffleboard.getTab("Sensors").add("Green", 0);
-    Shuffleboard.getTab("Sensors").add("Blue", 0);
-    Shuffleboard.getTab("Sensors").add("Match", "Unknown");
-    Shuffleboard.getTab("Sensors").add("Confidence", 0);
-    Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
-    Shuffleboard.getTab("Sensors").add("Turret Limit 1", false);
-    Shuffleboard.getTab("Sensors").add("Turret Limit 2", false);
-    Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false);
-    Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false);
-    Shuffleboard.getTab("Test");
-    Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Shooter Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Spinner Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Delivery Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Turret Test Status", "Start");
-    Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
-    Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
-    //Drivetrain Outputs
-    Shuffleboard.getTab("Drivetrain").add("Right1", 0);
-    Shuffleboard.getTab("Drivetrain").add("Right2", 0);
-    Shuffleboard.getTab("Drivetrain").add("Left1", 0);
-    Shuffleboard.getTab("Drivetrain").add("Left2", 0);
-    Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
-    Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
-    //Encoders
-    Shuffleboard.getTab("Encoders").add("Hood", 0);
-    Shuffleboard.getTab("Encoders").add("Spinner", 0);
-    Shuffleboard.getTab("Encoders").add("Delivery 1", 0);
-    Shuffleboard.getTab("Encoders").add("Delivery 2", 0);
-    Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0);
-    Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0);
-    Shuffleboard.getTab("Encoders").add("Turret", 0);
+        //For color sensor test only, creates shuffleboard tab and fields
+        Shuffleboard.getTab("Sensors");
+        Shuffleboard.getTab("Sensors").add("Red", 0);
+        Shuffleboard.getTab("Sensors").add("Green", 0);
+        Shuffleboard.getTab("Sensors").add("Blue", 0);
+        Shuffleboard.getTab("Sensors").add("Match", "Unknown");
+        Shuffleboard.getTab("Sensors").add("Confidence", 0);
+        Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
+        Shuffleboard.getTab("Sensors").add("Turret Limit 1", false);
+        Shuffleboard.getTab("Sensors").add("Turret Limit 2", false);
+        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false);
+        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false);
+        Shuffleboard.getTab("Test");
+        Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Shooter Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Spinner Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Delivery Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Turret Test Status", "Start");
+        Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
+        Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
+        //Drivetrain Outputs
+        Shuffleboard.getTab("Drivetrain").add("Right1", 0);
+        Shuffleboard.getTab("Drivetrain").add("Right2", 0);
+        Shuffleboard.getTab("Drivetrain").add("Left1", 0);
+        Shuffleboard.getTab("Drivetrain").add("Left2", 0);
+        Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
+        Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
+        //Encoders
+        Shuffleboard.getTab("Encoders").add("Hood", 0);
+        Shuffleboard.getTab("Encoders").add("Spinner", 0);
+        Shuffleboard.getTab("Encoders").add("Delivery 1", 0);
+        Shuffleboard.getTab("Encoders").add("Delivery 2", 0);
+        Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0);
+        Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0);
+        Shuffleboard.getTab("Encoders").add("Turret", 0);
 
-    m_robotContainer = new RobotContainer();
-  }
-
-  /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-    // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-    // commands, running already-scheduled commands, removing finished or interrupted commands,
-    // and running subsystem periodic() methods.  This must be called from the robot's periodic
-    // block in order for anything in the Command-based framework to work.
-    CommandScheduler.getInstance().run();
-
-  }
-
-  /**
-   * This function is called once each time the robot enters Disabled mode.
-   */
-  @Override
-  public void disabledInit() {
-  }
-
-  @Override
-  public void disabledPeriodic() {
-  }
-
-  /**
-   * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
-   */
-  @Override
-  public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+        m_robotContainer = new RobotContainer();
     }
-  }
 
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-  }
-
-  @Override
-  public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    /**
+     * This function is called every robot packet, no matter the mode. Use this for items like
+     * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+     *
+     * <p>This runs after the mode specific periodic functions, but before
+     * LiveWindow and SmartDashboard integrated updating.
+     */
+    @Override
+    public void robotPeriodic() {
+        // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
+        // commands, running already-scheduled commands, removing finished or interrupted commands,
+        // and running subsystem periodic() methods.  This must be called from the robot's periodic
+        // block in order for anything in the Command-based framework to work.
+        CommandScheduler.getInstance().run();
     }
-  }
 
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() {
-  }
+    /**
+     * This function is called once each time the robot enters Disabled mode.
+     */
+    @Override
+    public void disabledInit() {
+    }
 
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
-  }
+    @Override
+    public void disabledPeriodic() {
+    }
 
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() {
-  }
+    /**
+     * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
+     */
+    @Override
+    public void autonomousInit() {
+        m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+        // schedule the autonomous command (example)
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.schedule();
+        }
+    }
+
+    /**
+     * This function is called periodically during autonomous.
+     */
+    @Override
+    public void autonomousPeriodic() {
+    }
+
+    @Override
+    public void teleopInit() {
+        // This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to
+        // continue until interrupted by another command, remove
+        // this line or comment it out.
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.cancel();
+        }
+    }
+
+    /**
+     * This function is called periodically during operator control.
+     */
+    @Override
+    public void teleopPeriodic() {
+    }
+
+    @Override
+    public void testInit() {
+        // Cancels all running commands at the start of test mode.
+        CommandScheduler.getInstance().cancelAll();
+    }
+
+    /**
+     * This function is called periodically during test mode.
+     */
+    @Override
+    public void testPeriodic() {
+    }
 }

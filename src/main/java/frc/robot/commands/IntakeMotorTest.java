@@ -12,41 +12,41 @@ import frc.robot.subsystems.Intake;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class IntakeMotorTest extends CommandBase {
-  private double speedSet = 0.4;
-  private Intake intake;
-  
-  /**
-   * Creates a new SimpleMotorTest.
-   */
-  public IntakeMotorTest(Intake intake) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
-    addRequirements(intake);
-  }
+    private double speedSet = 0.4;
+    private Intake intake;
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Set Speed");
-    intake.testIntakeSet(speedSet);
-    ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Running");
-  }
+    /**
+     * Creates a new SimpleMotorTest.
+     */
+    public IntakeMotorTest(Intake intake) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.intake = intake;
+        addRequirements(intake);
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        speedSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Intake Set Speed");
+        intake.testIntakeSet(speedSet);
+        ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Running");
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    intake.testIntakeStop();
-    ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Ended");
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        intake.testIntakeStop();
+        ShuffleboardHelpers.setWidgetValue("Test", "Intake Test Status", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

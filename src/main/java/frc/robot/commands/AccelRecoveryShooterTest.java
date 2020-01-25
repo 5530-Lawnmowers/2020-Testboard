@@ -11,44 +11,44 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
 public class AccelRecoveryShooterTest extends CommandBase {
-  private Shooter shooter;
-  private final double THRESHOLD = 4650;
-  private final double MAX = 1.0;
-  private final double HOLD = 0.9;
+    private Shooter shooter;
+    private final double THRESHOLD = 4650;
+    private final double MAX = 1.0;
+    private final double HOLD = 0.9;
 
-  /**
-   * Creates a new AccelRecoveryShooterTest.
-   */
-  public AccelRecoveryShooterTest(Shooter shooter) {
-    this.shooter = shooter;
-    addRequirements(shooter);
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if(shooter.getShooterVelocity() > -THRESHOLD) {
-      shooter.testShooterSet(-MAX);
-    } else {
-      shooter.testShooterSet(-HOLD);
+    /**
+     * Creates a new AccelRecoveryShooterTest.
+     */
+    public AccelRecoveryShooterTest(Shooter shooter) {
+        this.shooter = shooter;
+        addRequirements(shooter);
+        // Use addRequirements() here to declare subsystem dependencies.
     }
-  }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    shooter.testShooterStop();
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        if (shooter.getShooterVelocity() > -THRESHOLD) {
+            shooter.testShooterSet(-MAX);
+        } else {
+            shooter.testShooterSet(-HOLD);
+        }
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        shooter.testShooterStop();
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }
