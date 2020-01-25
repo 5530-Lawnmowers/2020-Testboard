@@ -13,24 +13,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 /**
  * Add your docs here.
  */
-public class LimelightHelper {
+public class limelightHelper {
     public void getRawY(){
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
         double y = ty.getDouble(0.0);
         System.out.println(y);
-      }public class limelightHelper {
-lic void getRawY()
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-        NetworkTableEntry t = table.getEntry("y");
-        double  = t.getDouble(0.0);
-        System.out.println();
-
-      public static void getRawX(){
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-        NetworkTableEntry tx = table.getEntry("xy");
-        double x = tx.getDouble(0.0);
-        System.out.println(x);
       }
       public static double getDistance() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -45,3 +33,9 @@ lic void getRawY()
 
     public static double getTargetX(double angle) {
         return getDistance() * Math.cos(angle);
+       }
+       public static double getTargetY(double angle){
+        return getDistance() * Math.sin(angle);
+    }
+
+}
