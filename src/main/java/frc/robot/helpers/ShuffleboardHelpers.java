@@ -38,8 +38,7 @@ public class ShuffleboardHelpers {
      * @param sendable   the object that sends data for the widget
      */
     public static void createComplexWidget(String tabName, String widgetName, Sendable sendable) {
-        Shuffleboard.getTab(tabName)
-                .add(widgetName, sendable);
+        Shuffleboard.getTab(tabName).add(widgetName, sendable);
     }
 
     /**
@@ -51,9 +50,7 @@ public class ShuffleboardHelpers {
      * @throws IllegalStateException if the widget could not be found
      */
     private static SimpleWidget getSimpleWidget(String tabName, String widgetName) {
-        int indexOfWidget = Shuffleboard.getTab(tabName)
-                .getComponents()
-                .size();
+        int indexOfWidget = Shuffleboard.getTab(tabName).getComponents().size();
         for (int i = 0; i <= indexOfWidget; i++) {
             if (Shuffleboard.getTab(tabName).getComponents().get(i).getTitle() == widgetName) {
                 return (SimpleWidget) Shuffleboard.getTab(tabName).getComponents().get(i);
