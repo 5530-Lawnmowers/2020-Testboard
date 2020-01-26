@@ -283,9 +283,9 @@ public class SQLHelper {
      * @return The ID of the new table
      * @throws SQLException
      */
-    public static int backupTable() throws SQLException {
+    public static String backupTable() throws SQLException {
         Statement stmnt = conn.createStatement();
-        int time = (int)((new java.util.Date()).getTime() / 1000);
+        String time = new java.util.Date().toString();
         stmnt.execute("CREATE TABLE IF NOT EXISTS '" + time + "' LIKE 'NETWORK_TABLES';");
         stmnt.execute("INSERT '" + time + "' SELECT * FROM 'NETWORK_TABLES'");
         stmnt.close();
