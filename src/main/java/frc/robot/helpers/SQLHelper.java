@@ -24,6 +24,7 @@ public class SQLHelper {
     private static final String PASS = "larry";
 
     private static Connection conn;
+    private static ResultSet row;
 
     static {
         try {
@@ -71,6 +72,10 @@ public class SQLHelper {
             stmnt.execute("DROP TABLE 'NETWORK_TABLES'");
         }
         stmnt.execute("CREATE TABLE 'NETWORK_TABLES'('Time' int)");
+        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
+        if (row != null) row.getStatement().close();
+        row = stmnt.getResultSet();
+        row.moveToInsertRow();
     }
 
     /**
@@ -94,7 +99,10 @@ public class SQLHelper {
             throw new ClassCastException();
         }
         stmnt.execute("ALTER NETWORK_TABLES ADD `" + title + "` " + colType);
-        stmnt.close();
+        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
+        row.getStatement().close();
+        row = stmnt.getResultSet();
+        row.moveToInsertRow();
     }
 
     /**
@@ -105,7 +113,10 @@ public class SQLHelper {
     public static void delColumn(String title) throws SQLException {
         Statement stmnt = conn.createStatement();
         stmnt.execute("ALTER NETWORK_TABLES DROP `" + title + "`");
-        stmnt.close();
+        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
+        row.getStatement().close();
+        row = stmnt.getResultSet();
+        row.moveToInsertRow();
     }
 
     /**
@@ -242,6 +253,27 @@ public class SQLHelper {
         }
         set.getStatement().close();
         return arr;
+    }
+
+    /**
+     * Update a column's value in the insert row
+     * @param column Title of the column to get
+     * @param value The value to update to
+     * @throws SQLException
+     */
+    public static void updateValue(String column, Object value) throws SQLException {
+        row.moveToInsertRow();
+        row.updateObject(column, value);
+    }
+
+    /**
+     * Push the insert row to the table
+     * @throws SQLException
+     */
+    public static void pushRow() throws SQLException {
+        row.moveToInsertRow();
+        row.insertRow();
+        row.moveToInsertRow();
     }
 
     /**
