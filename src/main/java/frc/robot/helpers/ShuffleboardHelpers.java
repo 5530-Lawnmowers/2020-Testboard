@@ -45,7 +45,7 @@ public class ShuffleboardHelpers {
     /**
      * Finds the simple widget that matches the description
      *
-     * @param tabname    the shuffleboard the widget is located
+     * @param tabName    the shuffleboard the widget is located
      * @param widgetName the name of the widget
      * @return the {@code SimpleWidget} matching the shuffleboard and name given
      * @throws IllegalStateException if the widget could not be found
