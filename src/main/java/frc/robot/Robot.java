@@ -102,8 +102,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledInit() {
         try {
-            SQLHelper.closeConnection();
             SQLHelper.backupTable();
+            SQLHelper.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
