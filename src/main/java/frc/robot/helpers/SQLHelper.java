@@ -130,6 +130,8 @@ public class SQLHelper {
         stmnt.execute("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'NETWORK_TABLES' AND COLUMN_NAME = '" + title + "';");
         ResultSet result = stmnt.getResultSet();
         String type = result.getString(0);
+        result.close();
+        stmnt.close();
         switch (type) {
             case "varchar":
                 return String.class;
@@ -286,6 +288,7 @@ public class SQLHelper {
         int time = (int)((new java.util.Date()).getTime() / 1000);
         stmnt.execute("CREATE TABLE IF NOT EXISTS '" + time + "' LIKE 'NETWORK_TABLES';");
         stmnt.execute("INSERT '" + time + "' SELECT * FROM 'NETWORK_TABLES'");
+        stmnt.close();
         return time;
     }
 }
