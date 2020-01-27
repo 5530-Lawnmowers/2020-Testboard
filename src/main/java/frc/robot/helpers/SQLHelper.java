@@ -15,6 +15,7 @@ import java.sql.*;
 import java.util.*;
 
 import com.mysql.*;
+import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 
 /**
  * A mySQL helper for interacting with the debug database
@@ -285,6 +286,19 @@ public class SQLHelper {
     }
 
     /**
+     * Update a column's value in the insert row
+     *
+     * @param widget The widget to update the table from
+     * @throws SQLException
+     */
+    public static void updateValue(SimpleWidget widget) throws SQLException {
+        String title = widget.getTitle();
+        String tab = widget.getParent().getTitle();
+        Object value = ShuffleboardHelpers.getWidgetValue(tab, title);
+        updateValue(title + "/" + tab, value);
+    }
+
+    /**
      * Push the insert row to the table
      *
      * @throws SQLException
@@ -308,6 +322,20 @@ public class SQLHelper {
         stmnt.execute("INSERT '" + time + "' SELECT * FROM 'NETWORK_TABLES'");
         stmnt.close();
         return time;
+    }
+
+    /**
+     * Converts a ShuffleBoard SimpleWidget to a SQL entry
+     *
+     * @param widget The widget to convert
+     * @throws SQLException
+     */
+    public static void convertWidget(SimpleWidget widget) throws SQLException {
+        String title = widget.getTitle();
+        String tab = widget.getParent().getTitle();
+        Object value = ShuffleboardHelpers.getWidgetValue(tab, title);
+        addColumn(tab + "/" + title, value.getClass());
+        updateValue(tab + "/" + title, value);
     }
 
     /**
