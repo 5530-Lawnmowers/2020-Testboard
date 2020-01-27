@@ -145,11 +145,11 @@ public class SQLHelper {
             case "varchar":
                 return String.class;
             case "int":
-                return int.class;
+                return Integer.class;
             case "double":
-                return double.class;
+                return Double.class;
             case "boolean":
-                return boolean.class;
+                return Boolean.class;
         }
         throw new ClassCastException();
     }
@@ -198,7 +198,7 @@ public class SQLHelper {
         if (type != String.class) {
             throw new ClassCastException();
         }
-        ArrayList<String> arr = new ArrayList<String>();
+        ArrayList<String> arr = new ArrayList<>();
         while (set.next()) {
             arr.add(set.getString(1));
         }
@@ -220,7 +220,7 @@ public class SQLHelper {
         if (type != Integer.class) {
             throw new ClassCastException();
         }
-        ArrayList<Integer> arr = new ArrayList<Integer>();
+        ArrayList<Integer> arr = new ArrayList<>();
         while (set.next()) {
             arr.add(set.getInt(1));
         }
@@ -242,7 +242,7 @@ public class SQLHelper {
         if (type != Double.class) {
             throw new ClassCastException();
         }
-        ArrayList<Double> arr = new ArrayList<Double>();
+        ArrayList<Double> arr = new ArrayList<>();
         while (set.next()) {
             arr.add(set.getDouble(1));
         }
@@ -261,10 +261,10 @@ public class SQLHelper {
     public static ArrayList<Boolean> getBooleanCol(String title) throws SQLException {
         ResultSet set = getColumn(title);
         Class<?> type = getType(title);
-        if (type != boolean.class) {
+        if (type != Boolean.class) {
             throw new ClassCastException();
         }
-        ArrayList<Boolean> arr = new ArrayList<Boolean>();
+        ArrayList<Boolean> arr = new ArrayList<>();
         while (set.next()) {
             arr.add(set.getBoolean(1));
         }
