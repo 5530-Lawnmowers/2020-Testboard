@@ -39,6 +39,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void openConnection() throws SQLException {
+        if (isOpen()) conn.close();
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
     }
 
@@ -47,7 +48,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void closeConnection() throws SQLException {
-        conn.close();
+        if (isOpen()) conn.close();
     }
 
     /**
