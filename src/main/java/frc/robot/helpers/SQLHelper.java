@@ -309,4 +309,30 @@ public class SQLHelper {
         stmnt.close();
         return time;
     }
+
+    /**
+     * Compares the last row of the <b>NETWORK_TABLES</b> table to the new insert row
+     * <br>Used to determine if the new row should be pushed or not (to save storage space)
+     *
+     * @return <b>true</b> if they are equal, <b>false</b> if they are not
+     * @throws SQLException
+     */
+    public static boolean compareLast() throws SQLException {
+        int cols = row.getMetaData().getColumnCount();
+        ArrayList<Object> lastVals = new ArrayList<>();
+        row.last();
+        for (int i = 1; i <= cols; i++) {
+            lastVals.add(row.getObject(i));
+        }
+        row.moveToInsertRow();
+        ArrayList<Object> newVals = new ArrayList<>();
+        for (int i = 1; i <= cols; i++) {
+            newVals.add(row.getObject(i));
+        }
+        for (int i = 0; i < cols; i++) {
+            if (!newVals.get(i).equals(lastVals.get(i)))
+                return false;
+        }
+        return true;
+    }
 }
