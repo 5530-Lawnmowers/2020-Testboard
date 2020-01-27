@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 
 /**
  * A mySQL helper for interacting with the debug database
+ * Note: ALWAYS CLOSE CONNECTIONS WHEN NOT USING THEM
  */
 public class SQLHelper {
     private static final String DB_URL = "jdbc:mysql://localhost:3306";
