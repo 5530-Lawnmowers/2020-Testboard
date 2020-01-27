@@ -37,7 +37,19 @@ public class Turret extends SubsystemBase {
      * @param speed set speed
      */
     public void testTurretSet(double speed) {
-        turretSpin.set(speed);
+        if(speed > 0 && hardStop1.get()){
+            turretSpin.set(0);
+        }
+        else if(speed > 0 && !hardStop1.get()){
+            turretSpin.set(speed);
+        }
+        else if(speed < 0 && hardStop2.get()){
+            turretSpin.set(0);
+        }
+        else if (speed < 0 && !hardStop2.get()){
+            turretSpin.set(speed);
+        }
+        
     }
 
     /**
