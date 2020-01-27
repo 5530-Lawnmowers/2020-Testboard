@@ -13,6 +13,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 import java.sql.*;
 import java.util.*;
+
 import com.mysql.*;
 
 /**
@@ -36,6 +37,7 @@ public class SQLHelper {
 
     /**
      * Opens the mySQL connection to the debug server
+     *
      * @throws SQLException
      */
     public static void openConnection() throws SQLException {
@@ -45,6 +47,7 @@ public class SQLHelper {
 
     /**
      * Closes the mySQL connection to the debug server
+     *
      * @throws SQLException
      */
     public static void closeConnection() throws SQLException {
@@ -53,6 +56,7 @@ public class SQLHelper {
 
     /**
      * Checks the mySQL connection to the debug server
+     *
      * @return <b>true</b> if open, <b>false</b> if closed
      * @throws SQLException
      */
@@ -63,6 +67,7 @@ public class SQLHelper {
     /**
      * Initializes a new <b>NETWORK_TABLES</b> under the <b>DEBUG_PLATFORM</b> database
      * <br>DELETES ALL EXISTING DATA. BACKUP DATA USING THE {@link #backupTable()} METHOD
+     *
      * @throws SQLException
      */
     public static void initTable() throws SQLException {
@@ -81,8 +86,9 @@ public class SQLHelper {
 
     /**
      * Adds a new column to the <b>NETWORK_TABLES</b> table
+     *
      * @param title Title of the new column
-     * @param type Data type of the new column
+     * @param type  Data type of the new column
      * @throws SQLException
      */
     public static void addColumn(String title, Class<?> type) throws SQLException {
@@ -108,6 +114,7 @@ public class SQLHelper {
 
     /**
      * Deletes a column from the <b>NETWORK_TABLES</b> table
+     *
      * @param title Title of the column to be deleted
      * @throws SQLException
      */
@@ -122,6 +129,7 @@ public class SQLHelper {
 
     /**
      * Gets the data type of a column from the <b>NETWORK_TABLES</b> table
+     *
      * @param title Title of the column to get
      * @return The data type of the column
      * @throws SQLException
@@ -148,6 +156,7 @@ public class SQLHelper {
 
     /**
      * Get the a column from the <b>NETWORK_TABLES</b> table
+     *
      * @param title Title of the column to get
      * @return The result set of the column
      * @throws SQLException
@@ -160,6 +169,7 @@ public class SQLHelper {
 
     /**
      * Get a generic object array of a column's values
+     *
      * @param title Title of the column to get
      * @return A generic object array list of column values
      * @throws SQLException
@@ -176,6 +186,7 @@ public class SQLHelper {
 
     /**
      * Get a String array of a column's values
+     *
      * @param title Title of the column to get
      * @return A String array list of column values
      * @throws SQLException
@@ -197,6 +208,7 @@ public class SQLHelper {
 
     /**
      * Get an Integer array of a column's values
+     *
      * @param title Title of the column to get
      * @return An Integer array list of column values
      * @throws SQLException
@@ -218,6 +230,7 @@ public class SQLHelper {
 
     /**
      * Get a Double array of a column's values
+     *
      * @param title Title of the column to get
      * @return A Double array list of column values
      * @throws SQLException
@@ -239,6 +252,7 @@ public class SQLHelper {
 
     /**
      * Get a Boolean array of a column's values
+     *
      * @param title Title of the column to get
      * @return A Boolean array list of column values
      * @throws SQLException
@@ -260,8 +274,9 @@ public class SQLHelper {
 
     /**
      * Update a column's value in the insert row
+     *
      * @param column Title of the column to get
-     * @param value The value to update to
+     * @param value  The value to update to
      * @throws SQLException
      */
     public static void updateValue(String column, Object value) throws SQLException {
@@ -271,6 +286,7 @@ public class SQLHelper {
 
     /**
      * Push the insert row to the table
+     *
      * @throws SQLException
      */
     public static void pushRow() throws SQLException {
@@ -281,6 +297,7 @@ public class SQLHelper {
 
     /**
      * Backup the <b>NETWORK_TABLES</b> table on the debug server
+     *
      * @return The ID of the new table
      * @throws SQLException
      */
