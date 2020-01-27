@@ -14,7 +14,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import java.sql.*;
 import java.util.*;
 
-import com.mysql.*;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 
 /**
@@ -30,6 +29,11 @@ public class SQLHelper {
     private static ResultSet row;
 
     static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException e) {
