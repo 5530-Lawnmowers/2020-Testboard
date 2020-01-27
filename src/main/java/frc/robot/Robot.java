@@ -33,50 +33,54 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
-
-        //For color sensor test only, creates shuffleboard tab and fields
-        Shuffleboard.getTab("Sensors");
-        Shuffleboard.getTab("Sensors").add("Red", 0);
-        Shuffleboard.getTab("Sensors").add("Green", 0);
-        Shuffleboard.getTab("Sensors").add("Blue", 0);
-        Shuffleboard.getTab("Sensors").add("Match", "Unknown");
-        Shuffleboard.getTab("Sensors").add("Confidence", 0);
-        Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
-        Shuffleboard.getTab("Sensors").add("Turret Limit 1", false);
-        Shuffleboard.getTab("Sensors").add("Turret Limit 2", false);
-        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false);
-        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false);
-        Shuffleboard.getTab("Test");
-        Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Shooter Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Spinner Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Delivery Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Turret Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
-        //Drivetrain Outputs
-        Shuffleboard.getTab("Drivetrain").add("Right1", 0);
-        Shuffleboard.getTab("Drivetrain").add("Right2", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left1", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left2", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
-        Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
-        //Encoders
-        Shuffleboard.getTab("Encoders").add("Hood", 0);
-        Shuffleboard.getTab("Encoders").add("Spinner", 0);
-        Shuffleboard.getTab("Encoders").add("Delivery 1", 0);
-        Shuffleboard.getTab("Encoders").add("Delivery 2", 0);
-        Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0);
-        Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0);
-        Shuffleboard.getTab("Encoders").add("Turret", 0);
-
+        try {
+            //For color sensor test only, creates shuffleboard tab and fields
+            Shuffleboard.getTab("Sensors");
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Red", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Green", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Blue", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Match", "Unknown"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Confidence", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Turret Limit 1", false));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Turret Limit 2", false));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false));
+            Shuffleboard.getTab("Test");
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Intake Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Climber Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Shooter Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Spinner Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Delivery Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Turret Test Status", "Start"));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Test").add("Shooter Velocity", 0));
+            //Drivetrain Outputs
+            Shuffleboard.getTab("Drivetrain");
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Right1", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Right2", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Left1", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Left2", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Left Position", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Drivetrain").add("Right Position", 0));
+            //Encoders
+            Shuffleboard.getTab("Encoders");
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Hood", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Spinner", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Delivery 1", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Delivery 2", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0));
+            SQLHelper.convertWidget(Shuffleboard.getTab("Encoders").add("Turret", 0));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         m_robotContainer = new RobotContainer();
     }
 
