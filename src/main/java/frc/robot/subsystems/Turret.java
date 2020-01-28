@@ -27,8 +27,8 @@ public class Turret extends SubsystemBase {
      * Creates a new Turret.
      */
     public Turret() {
-        turretSpin.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-        turretSpin.setSelectedSensorPosition(0);
+        turretSpin.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+        //turretSpin.setSelectedSensorPosition(0);
     }
 
     /**
@@ -37,16 +37,16 @@ public class Turret extends SubsystemBase {
      * @param speed set speed
      */
     public void testTurretSet(double speed) {
-        if(speed > 0 && hardStop1.get()){
+        if(speed > 0 && !hardStop1.get()){
             turretSpin.set(0);
         }
-        else if(speed > 0 && !hardStop1.get()){
+        else if(speed > 0 && hardStop1.get()){
             turretSpin.set(speed);
         }
-        else if(speed < 0 && hardStop2.get()){
+        else if(speed < 0 && !hardStop2.get()){
             turretSpin.set(0);
         }
-        else if (speed < 0 && !hardStop2.get()){
+        else if (speed < 0 && hardStop2.get()){
             turretSpin.set(speed);
         }
         
