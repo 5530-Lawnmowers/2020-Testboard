@@ -26,7 +26,9 @@ public class SQLHelper {
     private static final String PASS = "larry";
 
     private static Connection conn;
-    private static ResultSet row;
+    private static ResultSet row = null;
+    private static ArrayList<SimpleWidget> widgets = new ArrayList<>();
+    private static String status;
 
     static {
         try {
@@ -57,7 +59,10 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void closeConnection() throws SQLException {
-        if (isOpen()) conn.close();
+        if (isOpen()) {
+            conn.close();
+            status = null;
+        }
     }
 
     /**
@@ -77,17 +82,31 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void initTable() throws SQLException {
-        Statement stmnt = conn.createStatement();
-        stmnt.execute("SHOW TABLES LIKE 'NETWORK_TABLES'");
-        ResultSet set = stmnt.getResultSet();
-        if (set.next()) {
-            stmnt.execute("DROP TABLE 'NETWORK_TABLES'");
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        DatabaseMetaData metaData = conn.getMetaData();
+        ResultSet tables = metaData.getTables(null, null, "NETWORK_TABLES", null);
+        stmnt.execute("USE DEBUG_PLATFORM");
+        if (tables.next()) {
+            stmnt.execute("DROP TABLE `NETWORK_TABLES`");
         }
-        stmnt.execute("CREATE TABLE 'NETWORK_TABLES'('Time' int)");
-        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
-        if (row != null) row.getStatement().close();
-        row = stmnt.getResultSet();
+        stmnt.execute("CREATE TABLE `NETWORK_TABLES`(`Time` int NOT NULL , PRIMARY KEY(`Time`))");
+        if (row != null && !row.isClosed()) row.getStatement().close();
+        stmnt.close();
+        stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        row = stmnt.executeQuery("SELECT * FROM NETWORK_TABLES");
         row.moveToInsertRow();
+        updateValue("Time", 0);
+        for (SimpleWidget widget : widgets) {
+            String title = widget.getTitle();
+            String tab = widget.getParent().getTitle();
+            Object value = ShuffleboardHelpers.getWidgetValue(tab, title);
+            addColumn(tab + "/" + title, value.getClass());
+            updateValue(tab + "/" + title, value);
+        }
+        stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
+        row.moveToInsertRow();
+        status = "initialized";
     }
 
     /**
@@ -98,23 +117,23 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void addColumn(String title, Class<?> type) throws SQLException {
-        Statement stmnt = conn.createStatement();
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         String colType;
         if (type == String.class) {
-            colType = "varchar(255)";
-        } else if (type == int.class) {
-            colType = "int";
-        } else if (type == double.class) {
-            colType = "double";
-        } else if (type == boolean.class) {
-            colType = "boolean";
+            colType = "VARCHAR(255)";
+        } else if (type == Integer.class) {
+            colType = "INT";
+        } else if (type == Double.class) {
+            colType = "DOUBLE";
+        } else if (type == Boolean.class) {
+            colType = "TINYINT";
         } else {
             throw new ClassCastException();
         }
-        stmnt.execute("ALTER NETWORK_TABLES ADD `" + title + "` " + colType);
-        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
+        stmnt.execute("USE DEBUG_PLATFORM");
+        stmnt.execute("ALTER TABLE NETWORK_TABLES ADD COLUMN `" + title + "` " + colType);
         row.getStatement().close();
-        row = stmnt.getResultSet();
+        row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
         row.moveToInsertRow();
     }
 
@@ -125,11 +144,11 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void delColumn(String title) throws SQLException {
-        Statement stmnt = conn.createStatement();
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        stmnt.execute("USE DEBUG_PLATFORM");
         stmnt.execute("ALTER NETWORK_TABLES DROP `" + title + "`");
-        stmnt.execute("SELECT * FROM 'NETWORK_TABLES'");
         row.getStatement().close();
-        row = stmnt.getResultSet();
+        row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
         row.moveToInsertRow();
     }
 
@@ -141,9 +160,9 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static Class<?> getType(String title) throws SQLException {
-        Statement stmnt = conn.createStatement();
-        stmnt.execute("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'NETWORK_TABLES' AND COLUMN_NAME = '" + title + "';");
-        ResultSet result = stmnt.getResultSet();
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        stmnt.execute("USE DEBUG_PLATFORM");
+        ResultSet result = stmnt.executeQuery("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = `NETWORK_TABLES` AND COLUMN_NAME = `" + title + "`;");
         String type = result.getString(0);
         result.close();
         stmnt.close();
@@ -168,9 +187,9 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static ResultSet getColumn(String title) throws SQLException {
-        Statement stmnt = conn.createStatement();
-        stmnt.execute("SELECT '" + title + "' FROM 'NETWORK_TABLES'");
-        return stmnt.getResultSet();
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        stmnt.execute("USE DEBUG_PLATFORM");
+        return stmnt.executeQuery("SELECT `" + title + "` FROM `NETWORK_TABLES`");
     }
 
     /**
@@ -286,7 +305,6 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void updateValue(String column, Object value) throws SQLException {
-        row.moveToInsertRow();
         row.updateObject(column, value);
     }
 
@@ -300,7 +318,7 @@ public class SQLHelper {
         String title = widget.getTitle();
         String tab = widget.getParent().getTitle();
         Object value = ShuffleboardHelpers.getWidgetValue(tab, title);
-        updateValue(title + "/" + tab, value);
+        updateValue(tab + "/" + title, value);
     }
 
     /**
@@ -309,9 +327,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void pushRow() throws SQLException {
-        row.moveToInsertRow();
         row.insertRow();
-        row.moveToInsertRow();
     }
 
     /**
@@ -321,26 +337,41 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static String backupTable() throws SQLException {
-        Statement stmnt = conn.createStatement();
+        if (status == null || status == "initialized") return "Zoinks, Scoob!";
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         String time = new java.util.Date().toString();
-        stmnt.execute("CREATE TABLE IF NOT EXISTS '" + time + "' LIKE 'NETWORK_TABLES';");
-        stmnt.execute("INSERT '" + time + "' SELECT * FROM 'NETWORK_TABLES'");
+        stmnt.execute("USE DEBUG_PLATFORM");
+        stmnt.execute("CREATE TABLE IF NOT EXISTS `" + time + "` LIKE `NETWORK_TABLES`;");
+        stmnt.execute("INSERT `" + time + "` SELECT * FROM `NETWORK_TABLES`");
         stmnt.close();
         return time;
     }
 
     /**
-     * Converts a ShuffleBoard SimpleWidget to a SQL entry
+     * Stage a Shuffleboard widget to the SQL debug server
      *
-     * @param widget The widget to convert
+     * @param widget The widget to monitor
+     */
+    public static void stageWidget(SimpleWidget widget) {
+        widgets.add(widget);
+    }
+
+    /**
+     * Call this method once per auton/teleop period
+     *
+     * @param timestamp The timestamp of this call
      * @throws SQLException
      */
-    public static void convertWidget(SimpleWidget widget) throws SQLException {
-        String title = widget.getTitle();
-        String tab = widget.getParent().getTitle();
-        Object value = ShuffleboardHelpers.getWidgetValue(tab, title);
-        addColumn(tab + "/" + title, value.getClass());
-        updateValue(tab + "/" + title, value);
+    public static void mySQLperiodic(int timestamp) throws SQLException {
+        status = "running";
+        if (!compareLast()) {
+            row.moveToInsertRow();
+            updateValue("Time", timestamp);
+            for (SimpleWidget widget : widgets) {
+                updateValue(widget);
+            }
+            pushRow();
+        }
     }
 
     /**
@@ -351,20 +382,33 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static boolean compareLast() throws SQLException {
+        if (!row.isClosed() && row != null) row.getStatement().close();
+        Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
         int cols = row.getMetaData().getColumnCount();
         ArrayList<Object> lastVals = new ArrayList<>();
+        if (!row.last()) return false;
         row.last();
-        for (int i = 1; i <= cols; i++) {
+        for (int i = 2; i <= cols; i++) {
             lastVals.add(row.getObject(i));
         }
         row.moveToInsertRow();
         ArrayList<Object> newVals = new ArrayList<>();
-        for (int i = 1; i <= cols; i++) {
-            newVals.add(row.getObject(i));
+        for (int i = 0; i < cols - 1; i++) {
+            newVals.add(ShuffleboardHelpers.getWidgetValue(widgets.get(i).getParent().getTitle(), widgets.get(i).getTitle()));
         }
-        for (int i = 0; i < cols; i++) {
-            if (!newVals.get(i).equals(lastVals.get(i)))
-                return false;
+        for (int i = 0; i < cols - 1; i++) {
+            Object val = newVals.get(i);
+            Class<?> type = val.getClass();
+            if (type == String.class) {
+                if (!val.equals(lastVals.get(i))) return false;
+            } else if (type == Double.class) {
+                if (Math.abs((double)(val) - (double)lastVals.get(i)) > 0.00001) return false;
+            } else if (type == Boolean.class) {
+                if ((boolean)(val) != ((int)lastVals.get(i) == 1)) return false;
+            } else if (type == Integer.class) {
+                if ((int)(val) != (int)lastVals.get(i)) return false;
+            }
         }
         return true;
     }
