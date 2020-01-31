@@ -8,9 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.helpers.SQLHelper;
+
+import java.sql.SQLException;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
-
+    private Timer timer = new Timer();
     private RobotContainer m_robotContainer;
 
     /**
@@ -31,50 +35,50 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
-
-        //For color sensor test only, creates shuffleboard tab and fields
+        // For color sensor test only, creates shuffleboard tab and fields
         Shuffleboard.getTab("Sensors");
-        Shuffleboard.getTab("Sensors").add("Red", 0);
-        Shuffleboard.getTab("Sensors").add("Green", 0);
-        Shuffleboard.getTab("Sensors").add("Blue", 0);
-        Shuffleboard.getTab("Sensors").add("Match", "Unknown");
-        Shuffleboard.getTab("Sensors").add("Confidence", 0);
-        Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0);
-        Shuffleboard.getTab("Sensors").add("Turret Limit 1", false);
-        Shuffleboard.getTab("Sensors").add("Turret Limit 2", false);
-        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false);
-        Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false);
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Red", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Green", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Blue", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Match", "Unknown"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Confidence", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Gyro Yaw", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Turret Limit 1", false));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Turret Limit 2", false));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 1", false));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Sensors").add("Delivery Breakbeam 2", false));
         Shuffleboard.getTab("Test");
-        Shuffleboard.getTab("Test").add("Intake Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Climber Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Shooter Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Spinner Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Delivery Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Turret Test Status", "Start");
-        Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4);
-        Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Intake Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Climber Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Drivetrain Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Shooter Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Spinner Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Delivery Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Turret Test Status", "Start"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Delivery Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Shooter Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Spinner Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Intake Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Climber Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Turret Set Speed", 0.4));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Test").add("Shooter Velocity", 0));
         //Drivetrain Outputs
-        Shuffleboard.getTab("Drivetrain").add("Right1", 0);
-        Shuffleboard.getTab("Drivetrain").add("Right2", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left1", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left2", 0);
-        Shuffleboard.getTab("Drivetrain").add("Left Position", 0);
-        Shuffleboard.getTab("Drivetrain").add("Right Position", 0);
+        Shuffleboard.getTab("Drivetrain");
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Right1", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Right2", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Left1", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Left2", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Left Position", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Drivetrain").add("Right Position", 0));
         //Encoders
-        Shuffleboard.getTab("Encoders").add("Hood", 0);
-        Shuffleboard.getTab("Encoders").add("Spinner", 0);
-        Shuffleboard.getTab("Encoders").add("Delivery 1", 0);
-        Shuffleboard.getTab("Encoders").add("Delivery 2", 0);
-        Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0);
-        Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0);
-        Shuffleboard.getTab("Encoders").add("Turret", 0);
-
+        Shuffleboard.getTab("Encoders");
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Hood", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Spinner", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Delivery 1", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Delivery 2", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Drivetrain Left", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Turret", 0));
         m_robotContainer = new RobotContainer();
     }
 
@@ -99,6 +103,14 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        try {
+            timer.reset();
+            timer.stop();
+            SQLHelper.backupTable();
+            SQLHelper.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -116,6 +128,15 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
+        try {
+            if (!SQLHelper.isOpen()) {
+                SQLHelper.openConnection();
+                SQLHelper.initTable();
+                timer.start();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -123,6 +144,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+        try {
+            SQLHelper.mySQLperiodic((int) timer.get());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -134,6 +160,15 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        try {
+            if (!SQLHelper.isOpen()) {
+                SQLHelper.openConnection();
+                SQLHelper.initTable();
+                timer.start();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -141,6 +176,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        try {
+            SQLHelper.mySQLperiodic((int)(timer.get() * 1000));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
