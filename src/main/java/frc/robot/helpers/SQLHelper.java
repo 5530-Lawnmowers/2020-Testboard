@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
  * Note: ALWAYS CLOSE CONNECTIONS WHEN NOT USING THEM
  */
 public class SQLHelper {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306";
+    private static final String DB_URL = "jdbc:mysql://10.55.30.69:3306";
     private static final String USER = "5530";
     private static final String PASS = "larry";
 
@@ -32,7 +32,7 @@ public class SQLHelper {
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -72,7 +72,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static boolean isOpen() throws SQLException {
-        return !conn.isClosed();
+        return conn != null && !conn.isClosed();
     }
 
     /**
@@ -126,7 +126,7 @@ public class SQLHelper {
         } else if (type == Double.class) {
             colType = "DOUBLE";
         } else if (type == Boolean.class) {
-            colType = "TINYINT";
+            colType = "BOOLEAN";
         } else {
             throw new ClassCastException();
         }
@@ -162,7 +162,7 @@ public class SQLHelper {
     public static Class<?> getType(String title) throws SQLException {
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         stmnt.execute("USE DEBUG_PLATFORM");
-        ResultSet result = stmnt.executeQuery("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = `NETWORK_TABLES` AND COLUMN_NAME = `" + title + "`;");
+        ResultSet result = stmnt.executeQuery("SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'NETWORK_TABLES' AND COLUMN_NAME = '" + title + "';");
         String type = result.getString(0);
         result.close();
         stmnt.close();
@@ -173,7 +173,7 @@ public class SQLHelper {
                 return Integer.class;
             case "double":
                 return Double.class;
-            case "boolean":
+            case "tinyint":
                 return Boolean.class;
         }
         throw new ClassCastException();
@@ -405,7 +405,7 @@ public class SQLHelper {
             } else if (type == Double.class) {
                 if (Math.abs((double)(val) - (double)lastVals.get(i)) > 0.00001) return false;
             } else if (type == Boolean.class) {
-                if ((boolean)(val) != ((int)lastVals.get(i) == 1)) return false;
+                if ((boolean)(val) != (boolean)lastVals.get(i)) return false;
             } else if (type == Integer.class) {
                 if ((int)(val) != (int)lastVals.get(i)) return false;
             }
