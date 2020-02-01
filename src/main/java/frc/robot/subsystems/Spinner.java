@@ -46,6 +46,7 @@ public class Spinner extends SubsystemBase {
         // In theory, this should schedule the command to output the RGB values.
         CommandScheduler.getInstance().schedule(new OutputRGB(this));
         ShuffleboardHelpers.setWidgetValue("Encoders", "Spinner", spinner.getEncoder().getPosition());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Spin Act", spinnerActuation.getSelectedSensorPosition());
     }
 
     /**

@@ -80,6 +80,8 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Drivetrain Right", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Encoders").add("Turret", 0));
         Shuffleboard.getTab("Encoders").add("Turret Zero", 0);
+        Shuffleboard.getTab("Encoders").add("Spin Act", 0);
+
         m_robotContainer = new RobotContainer();
     }
 
