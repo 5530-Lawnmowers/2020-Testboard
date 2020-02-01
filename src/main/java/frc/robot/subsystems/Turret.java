@@ -33,7 +33,6 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kP(0, .01, 10);
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
-        turretSpin.setSelectedSensorPosition(0);
     }
 
     /**
