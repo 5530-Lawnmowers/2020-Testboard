@@ -30,13 +30,14 @@ public class TurretAlignTest extends CommandBase {
     public void execute() {
         int currentTick = turret.getEncoderVal();
         double limeLightDiff = LimelightHelper.getRawX();
-        int limeLightTarget = currentTick + (int)((limeLightDiff / 360) * 4096);
+        int limeLightTarget = currentTick + (int) ((limeLightDiff / 360) * 4096);
         if (Math.abs(limeLightDiff) < THRESHOLD) return;
-        double limit;
         if (limeLightTarget > turret.getZero()) {
-            limit = turret.getZero() + 1536;
+            double limit = turret.getZero() + 1536;
+            turret.setPosition((int) Math.min(limit, limeLightTarget));
         } else {
-            limit = turret.getZero() - 1536;
+            double limit = turret.getZero() - 1536;
+            turret.setPosition((int) Math.max(limit, limeLightTarget));
         }
     }
 
