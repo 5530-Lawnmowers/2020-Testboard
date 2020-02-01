@@ -74,4 +74,13 @@ public class Spinner extends SubsystemBase {
     public void testSpinnerStop() {
         spinner.stopMotor();
     }
+
+    public void testSpinActSet(double speed) {
+        spinnerActuation.set(speed);
+    }
+
+    public void testSpinActStop() {
+        spinnerActuation.stopMotor();
+    }
+
 }
