@@ -14,6 +14,8 @@ import frc.robot.commands.OutputRGB;
 import frc.robot.helpers.ShuffleboardHelpers;
 import edu.wpi.first.wpilibj.util.Color;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
@@ -21,7 +23,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Spinner extends SubsystemBase {
-    private final WPI_TalonSRX spinner = new WPI_TalonSRX(Constants.SPIN);
+    private final CANSparkMax spinner = new CANSparkMax(Constants.SPIN, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private final WPI_TalonSRX spinnerActuation = new WPI_TalonSRX(Constants.SPIN_ACT);
     private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.I2C_PORT);
     private final ColorMatch colorMatch = new ColorMatch();
 
@@ -33,8 +36,8 @@ public class Spinner extends SubsystemBase {
         colorMatch.addColorMatch(Constants.greenTarget);
         colorMatch.addColorMatch(Constants.redTarget);
         colorMatch.addColorMatch(Constants.yellowTarget);
-        spinner.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-        spinner.setSelectedSensorPosition(0);
+        spinnerActuation.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+        spinnerActuation.setSelectedSensorPosition(0);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class Spinner extends SubsystemBase {
         // This method will be called once per scheduler run
         // In theory, this should schedule the command to output the RGB values.
         CommandScheduler.getInstance().schedule(new OutputRGB(this));
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Spinner", spinner.getSelectedSensorPosition());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Spinner", spinner.getEncoder().getPosition());
     }
 
     /**
