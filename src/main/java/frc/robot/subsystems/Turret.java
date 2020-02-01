@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
@@ -28,7 +29,11 @@ public class Turret extends SubsystemBase {
      */
     public Turret() {
         turretSpin.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
-        //turretSpin.setSelectedSensorPosition(0);
+        turretSpin.config_kF(0, .05, 10);
+        turretSpin.config_kP(0, .01, 10);
+        turretSpin.config_kI(0, .007, 10);
+        turretSpin.config_kD(0, .007, 10);
+        turretSpin.setSelectedSensorPosition(0);
     }
 
     /**
@@ -37,21 +42,14 @@ public class Turret extends SubsystemBase {
      * @param speed set speed
      */
     public void testTurretSet(double speed) {
-        if(speed > 0 && !hardStop1.get()){
-            turretSpin.set(0);
-        }
-        else if(speed > 0 && hardStop1.get()){
-            turretSpin.set(speed);
-        }
-        else if(speed < 0 && !hardStop2.get()){
-            turretSpin.set(0);
-        }
-        else if (speed < 0 && hardStop2.get()){
-            turretSpin.set(speed);
-        }
+         
+        //TODO: Confirm that the hardstops correspond correctly to motor direction  
         
     }
 
+    public void setPosition(int TargetPosition){
+        turretSpin.set(ControlMode.Position, TargetPosition);
+    }
     /**
      * For test purposes only
      */
