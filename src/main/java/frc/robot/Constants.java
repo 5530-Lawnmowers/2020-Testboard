@@ -50,6 +50,10 @@ public final class Constants {
     public static final int ANGLE = 15;    //UNKNOWN
     public static final int TURRET = 16;   //UNKNOWN
 
+    //Shooter Encoder
+    public static final int ANGLE_ENCODER_A = 8;
+    public static final int ANGLE_ENCODER_B = 9;
+
     //Turret sensors
     public static final int TURRET_S1 = 2;
     public static final int TURRET_S2 = 3;
