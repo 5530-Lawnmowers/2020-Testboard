@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -24,11 +25,19 @@ public class Turret extends SubsystemBase {
     private final DigitalInput hardStop1 = new DigitalInput(Constants.TURRET_S1);
     private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
 
+    private final int ABSOLUTE_ZERO = 189;
+    private int ZERO;
     /**
      * Creates a new Turret.
      */
     public Turret() {
         turretSpin.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+        if (turretSpin.getSelectedSensorPosition() % 4096 > ABSOLUTE_ZERO + 2560) {
+            ZERO = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + ABSOLUTE_ZERO;
+        } else {
+            ZERO = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + ABSOLUTE_ZERO;
+        }
+        //turretSpin.setSelectedSensorPosition(0);
         turretSpin.config_kF(0, .05, 10);
         turretSpin.config_kP(0, .01, 10);
         turretSpin.config_kI(0, .007, 10);
@@ -64,6 +73,24 @@ public class Turret extends SubsystemBase {
      */
     public boolean testLimit() {
         return !hardStop1.get() || !hardStop2.get();
+    }
+
+    /**
+     * Get the current encoder angle of the turret
+     *
+     * @return The current angle
+     */
+    public int getEncoderVal() {
+        return turretSpin.getSelectedSensorPosition();
+    }
+
+    /**
+     * Get the front facing encoder value
+     *
+     * @return The front facing encoder value
+     */
+    public int getZero() {
+        return ZERO;
     }
 
     @Override
