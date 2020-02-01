@@ -363,6 +363,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static void mySQLperiodic(int timestamp) throws SQLException {
+        if (conn == null) return;
         status = "running";
         if (!compareLast()) {
             row.moveToInsertRow();
