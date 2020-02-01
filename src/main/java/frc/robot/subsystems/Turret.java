@@ -98,5 +98,6 @@ public class Turret extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", !hardStop1.get());
         ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", !hardStop2.get());
         ShuffleboardHelpers.setWidgetValue("Encoders", "Turret", turretSpin.getSelectedSensorPosition());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret Zero", ZERO);
     }
 }
