@@ -50,7 +50,7 @@ public class Turret extends SubsystemBase {
      * @param speed set speed
      */
     public void testTurretSet(double speed) {
-         
+         turretSpin.set(speed);
         //TODO: Confirm that the hardstops correspond correctly to motor direction  
         
     }
