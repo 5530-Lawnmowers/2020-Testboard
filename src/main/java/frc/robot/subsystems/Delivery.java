@@ -17,8 +17,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Delivery extends SubsystemBase {
-    private final WPI_TalonSRX delivery1 = new WPI_TalonSRX(Constants.DELIVERY_1);
-    private final WPI_TalonSRX delivery2 = new WPI_TalonSRX(Constants.DELIVERY_2);
+    private final CANSparkMax delivery = new CANSparkMax(Constants.DELIVERY_1, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     //Delivery has assorted digital triggers
     private final DigitalInput deliverySensor1 = new DigitalInput(Constants.DELIVERY_S1);
@@ -28,29 +27,22 @@ public class Delivery extends SubsystemBase {
      * Creates a new Delivery.
      */
     public Delivery() {
-        delivery1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-        delivery2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-        delivery1.setSelectedSensorPosition(0);
-        delivery2.setSelectedSensorPosition(0);
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 1", delivery1.getSelectedSensorPosition());
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 2", delivery2.getSelectedSensorPosition());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Delivery 1", delivery.getEncoder().getPosition());
         ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 1", deliverySensor1.get());
         ShuffleboardHelpers.setWidgetValue("Sensors", "Delivery Breakbeam 2", deliverySensor2.get());
     }
 
 
     public void testDeliverySet(double input) {
-        delivery1.set(input);
-        delivery2.set(input);
+        delivery.set(input);
     }
 
     public void testDeliveryStop() {
-        delivery1.stopMotor();
-        delivery2.stopMotor();
+        delivery.stopMotor();
     }
 }
