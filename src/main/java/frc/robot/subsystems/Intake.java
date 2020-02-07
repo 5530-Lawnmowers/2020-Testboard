@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
-    private final CANSparkMax intake1 = new CANSparkMax(Constants.INTAKE_1, CANSparkMaxLowLevel.MotorType.kBrushless);
-    private final CANSparkMax intake2 = new CANSparkMax(Constants.INTAKE_2, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     /**
      * Creates a new Intake.
@@ -32,12 +31,10 @@ public class Intake extends SubsystemBase {
     }
 
     public void testIntakeSet(double input) {
-        intake1.set(input);
-        intake2.set(input);
+        intake.set(input);
     }
 
     public void testIntakeStop() {
-        intake1.stopMotor();
-        intake2.stopMotor();
+        intake.stopMotor();
     }
 }
